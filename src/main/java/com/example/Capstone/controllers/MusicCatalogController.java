@@ -1,9 +1,12 @@
 package com.example.Capstone.controllers;
 
+import com.example.Capstone.entities.Genre;
 import com.example.Capstone.entities.Music;
+import com.example.Capstone.services.GenreService;
 import com.example.Capstone.services.MusicService;
 
 import java.util.ArrayList;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -22,6 +25,9 @@ public class MusicCatalogController {
 
     @Autowired
     MusicService musicService;
+    
+    @Autowired
+    GenreService genreService;
 
 
     @RequestMapping(value = "/music_catalog", method = RequestMethod.GET)
@@ -39,13 +45,23 @@ public class MusicCatalogController {
     }
     
     @RequestMapping(value = "/search", method = RequestMethod.GET)
-    public String search(@RequestParam("search") String searchterm, Model model) {
+    public String search(@RequestParam("search") String searchterm, @RequestParam("genre") String genre, Model model) {
     	Iterable<Music> Musics = musicService.GetAllMusic();
+    	Iterable<Genre> Genre = genreService.GetAllGenre();
+    	
     	ArrayList<Music> musicAL = new ArrayList<>();
     	for(Music m: Musics)
     	{
-    		if(m.getName().toLowerCase().contains(searchterm.toLowerCase()))
-    			musicAL.add(m);
+    		if(m.getName().toLowerCase().contains(searchterm.toLowerCase()) || m.getAlbum().getName().toLowerCase().contains(searchterm.toLowerCase()))
+    		{
+    			Genre gen = genreService.GetGenre(m.getId());
+    			//System.out.println(gen.getName().toLowerCase());
+    			//System.out.println(genre.toLowerCase());
+    			if(genre.toLowerCase().equals("select..."))
+    				musicAL.add(m);
+    			if(gen.getName().toLowerCase().equals(genre.toLowerCase()))
+        			musicAL.add(m);
+    		}
     	}
         model.addAttribute("music", musicAL);
     	
