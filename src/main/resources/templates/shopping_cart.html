@@ -2,10 +2,10 @@
 <html xmlns:th="http://www.thymeleaf.org" lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Music Catalog</title>
+    <title>Shopping Cart</title>
     <link rel="stylesheet" href="styles.css"></link>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-	<style>
+    <style>
 		.center {
 	  		text-align: center;
 	  	}
@@ -23,34 +23,18 @@
 	      
 	  </div>
 	</nav>
-	<br><br>	
+	<br><br>
 	<div class="d-flex justify-content-center">
 		<div class="w-75 p-3">
 			<div class="center">
-			<h1 class="display-3">Catalog</h1>
+    		<h1 class="display-3">Shopping Cart</h1>
 				<div class="jumbotron">
-					<p class="lead">View our music catalog below and select some to add to your cart</p>
-				    <table border="1" class="mx-auto">
-				        <thead>
-				            <tr>
-				                <th> Song Name</th>
-				                <th> Album Name</th>
-				                <th> Track Number</th>
-				                <th > Price</th>
-				            </tr>
-				        </thead>
-				    <tbody>
-				        <tr th:each="music, iStat : ${music}" >
-				            <td th:text="${music.name}" />
-				            <td th:text="${music.album.name}" />
-				            <td th:text="${music.trackNumber}" />
-				            <td th:text="${music.price}" />
-				        </tr>
-				        </tbody>
-				    </table>
+					<p class="lead">Your items:</p>
+				    
 				</div>
 			</div>
 		</div>
 	</div>
+
 </body>
 </html>

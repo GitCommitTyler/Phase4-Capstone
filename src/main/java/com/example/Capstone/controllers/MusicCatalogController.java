@@ -30,6 +30,9 @@ public class MusicCatalogController {
         return "music_catalog";
     }
 
-
+    @RequestMapping(value = "/shopping_cart", method = RequestMethod.GET)
+    public String cart(Model model) {
+    	return "shopping_cart";
+    }
 
 }

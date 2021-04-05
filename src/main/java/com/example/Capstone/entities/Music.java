@@ -23,6 +23,11 @@ public class Music {
 
     private BigDecimal price;
 
+	public String getName() {
+		// TODO Auto-generated method stub
+		return name;
+	}
+
 
 
 
