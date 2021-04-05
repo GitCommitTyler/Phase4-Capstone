@@ -57,6 +57,10 @@ insert into music (id, name, price, track_number, album_id) VALUES (1, "My Tract
 insert into music (id, name, price, track_number, album_id) VALUES (1, "Starting Over", 0.99, 1, 2);
 ```
 
+#### To Login:
+For the username enter 'user'
+For the password check the java console for a string of characters and paste into your browser.
+
 ### Due Date
 
-08-April
+12-April
