@@ -14,7 +14,7 @@ public class Music {
     @GeneratedValue(strategy= GenerationType.AUTO)
     private Long id;
 
-    private String name;
+	private String name;
 
     @ManyToOne
     private Album album;
@@ -28,7 +28,41 @@ public class Music {
 		return name;
 	}
 
+	public Long getId() {
+		return id;
+	}
 
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	public Album getAlbum() {
+		return album;
+	}
+
+	public void setAlbum(Album album) {
+		this.album = album;
+	}
+
+	public int getTrackNumber() {
+		return trackNumber;
+	}
+
+	public void setTrackNumber(int trackNumber) {
+		this.trackNumber = trackNumber;
+	}
+
+	public BigDecimal getPrice() {
+		return price;
+	}
+
+	public void setPrice(BigDecimal price) {
+		this.price = price;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
 
 
 }

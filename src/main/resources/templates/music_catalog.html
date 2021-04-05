@@ -5,6 +5,7 @@
     <title>Music Catalog</title>
     <link rel="stylesheet" href="styles.css"></link>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+	<script src="https://kit.fontawesome.com/801e5a8a65.js" crossorigin="anonymous"></script>
 	<style>
 		.center {
 	  		text-align: center;
@@ -15,7 +16,7 @@
 <body style="background-color:aliceblue;">
 	<nav class="navbar navbar-expand-lg fixed-top navbar-dark bg-dark">
 	  <div class="container-fluid">
-	    <a class="navbar-brand" href="/">Task Manager</a>
+	    <a class="navbar-brand" href="/">Music Website</a>
 	      <ul class="navbar-nav me-auto mb-2 mb-lg-0"> 
 	      	<li><a class="nav-link active" aria-current="page" href="/music_catalog">Music Catalog</a></li>
 	      	<li><a class="nav-link active" aria-current="page" href="/shopping_cart">Shopping Cart</a></li>
@@ -30,6 +31,17 @@
 			<h1 class="display-3">Catalog</h1>
 				<div class="jumbotron">
 					<p class="lead">View our music catalog below and select some to add to your cart</p>
+						<form method="get" action="search" class="w-50 mx-auto">
+							<div class="input-group mb-2">
+						        <div class="input-group-prepend">
+						          <div class="input-group-text"><span class="input-group-addon"><i class="fas fa-search"></i></span></div>
+						        </div>
+						    	<input type="text" class="form-control" name="search" placeholder="Search..." id="search" required>
+						    	<p>&nbsp;&nbsp;</p>
+						    	<input type="submit" value="Enter" class="btn btn-secondary mb-2"/>
+						    </div>
+						</form>
+					<br><br>
 				    <table border="1" class="mx-auto">
 				        <thead>
 				            <tr>

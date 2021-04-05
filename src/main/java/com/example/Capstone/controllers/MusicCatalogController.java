@@ -2,6 +2,9 @@ package com.example.Capstone.controllers;
 
 import com.example.Capstone.entities.Music;
 import com.example.Capstone.services.MusicService;
+
+import java.util.ArrayList;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -33,6 +36,20 @@ public class MusicCatalogController {
     @RequestMapping(value = "/shopping_cart", method = RequestMethod.GET)
     public String cart(Model model) {
     	return "shopping_cart";
+    }
+    
+    @RequestMapping(value = "/search", method = RequestMethod.GET)
+    public String search(@RequestParam("search") String searchterm, Model model) {
+    	Iterable<Music> Musics = musicService.GetAllMusic();
+    	ArrayList<Music> musicAL = new ArrayList<>();
+    	for(Music m: Musics)
+    	{
+    		if(m.getName().toLowerCase().contains(searchterm.toLowerCase()))
+    			musicAL.add(m);
+    	}
+        model.addAttribute("music", musicAL);
+    	
+    	return "music_catalog";
     }
 
 }
