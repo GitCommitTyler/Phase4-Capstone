@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Shopping Cart</title>
+    <link rel="stylesheet" href="styles.css"></link>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <script src="https://kit.fontawesome.com/801e5a8a65.js" crossorigin="anonymous"></script>
+    <style>
+		.center {
+	  		text-align: center;
+	  	}
+	  	
+	</style>
+</head>
+<body style="background-color:aliceblue;">
+	<nav class="navbar navbar-expand-lg fixed-top navbar-dark bg-dark">
+	  <div class="container-fluid">
+	    <a class="navbar-brand" href="/user/index">Music Website</a>
+	      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+	      	<li><a class="nav-link active" aria-current="page" href="/user/search_page">Search</a></li> 
+	      	<li><a class="nav-link active" aria-current="page" href="/user/music_catalog">Music Catalog</a></li>
+	      	<li><a class="nav-link active" aria-current="page" href="/user/shopping_cart">Shopping Cart</a></li>
+	      </ul>
+	      
+	  </div>
+	</nav>
+	<br><br>
+	<div class="d-flex justify-content-center">
+		<div class="w-75 p-3">
+			<div class="center">
+    		<h1 class="display-3">Administration Page</h1>
+				<div class="jumbotron">
+					<p class="lead">Songs:</p>
+				    
+				    <table class="table table-info table-striped table-bordered table-hover mx-auto">
+				        <thead>
+				            <tr>
+				                <th> ID</th>
+				                <th> Song Name</th>
+				                <th> Album Name</th>
+				                <th> Genre </th>
+				                <th> Track Number</th>
+				                <th > Price</th>
+				            </tr>
+				        </thead>
+				    <tbody>
+				        <tr th:each="music, iStat : ${music}" >
+				            <td th:text="${music.id}" />
+				            <td th:text="${music.name}" />
+				            <td th:text="${music.album.name}" />
+				            <td th:text="${music.genre.name}" />
+				            <td th:text="${music.trackNumber}" />
+				            <td th:text="${music.price}" />
+				        </tr>
+				        </tbody>
+				    </table>
+				    
+				    <p class="lead">Albums:</p>
+				    
+				    <table class="table table-info table-striped table-bordered table-hover mx-auto">
+				        <thead>
+				            <tr>
+				                <th> ID</th>				                
+				                <th> Album Name</th>
+				                <th> Artist Name</th>
+				                <th> Genre </th>
+				                <th> Release Date</th>
+				                <th > Price</th>
+				            </tr>
+				        </thead>
+				    <tbody>
+				        <tr th:each="album, iStat : ${album}" >
+				            <td th:text="${album.id}" />
+				            <td th:text="${album.name}" />
+				            <td th:text="${album.artist}" />
+				            <td th:text="${album.genre.name}" />
+				            <td th:text="${album.releaseDate}" />
+				            <td th:text="${album.price}" />
+				        </tr>
+				        </tbody>
+				    </table>
+				    
+				    <p class="lead">Genres:</p>
+				    
+				    <table class="table table-info table-striped table-bordered table-hover mx-auto">
+				        <thead>
+				            <tr>
+				                <th> ID</th>				                
+				                <th> Genre Name</th>
+				            </tr>
+				        </thead>
+				    <tbody>
+				        <tr th:each="genre, iStat : ${genre}" >
+				            <td th:text="${genre.id}" />
+				            <td th:text="${genre.name}" />
+				        </tr>
+				        </tbody>
+				    </table>
+				    
+				    <br><br>
+				    <form method="get" action="search" class="w-50 mx-auto">
+						<div class="input-group mb-2">
+					        <div class="input-group-prepend">
+					          <div class="input-group-text"><span class="input-group-addon"><i class="fas fa-record-vinyl"></i></span></div>
+					        </div>
+					    	<input type="text" class="form-control" name="addGenre" placeholder="Add Genre..." id="addGenre" required>					    	
+					    	<a class="btn btn-info" href="/user/search_page" role="button">Add</a>
+					    </div>
+				    </form>
+				    
+				    <p class="lead">Users:</p>
+				    
+				    <table class="table table-info table-striped table-bordered table-hover mx-auto">
+				        <thead>
+				            <tr>
+				                <th> ID</th>				                
+				                <th> Username</th>
+				                <th> Email</th>
+				                <th> Password </th>
+				                <th> First Name</th>
+				                <th> Last Name</th>
+				                <th > Active</th>
+				            </tr>
+				        </thead>
+				    <tbody>
+				        <tr th:each="user, iStat : ${user}" >
+				            <td th:text="${user.id}" />
+				            <td th:text="${user.userName}" />
+				            <td th:text="${user.email}" />
+				            <td th:text="${user.password}" />
+				            <td th:text="${user.name}" />
+				            <td th:text="${user.lastName}" />
+				            <td th:text="${user.active}" />
+				        </tr>
+				        </tbody>
+				    </table>
+				</div>
+			</div>
+		</div>
+	</div>
+
+</body>
+</html>
