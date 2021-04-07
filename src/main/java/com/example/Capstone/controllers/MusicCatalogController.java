@@ -35,14 +35,14 @@ public class MusicCatalogController {
     @Autowired
     GenreService genreService;
     
-    @GetMapping(value="/user/index")
-    public ModelAndView userHome() {
-    	ModelAndView modelAndView = new ModelAndView();
-    	Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-    	User user = userService.findUserByUserName(auth.getName());
-    	modelAndView.setViewName("user/index");
-    	return modelAndView;
-    }
+//    @GetMapping(value="/user/index")
+//    public ModelAndView userHome() {
+//    	ModelAndView modelAndView = new ModelAndView();
+//    	Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+//    	User user = userService.findUserByUserName(auth.getName());
+//    	modelAndView.setViewName("user/index");
+//    	return modelAndView;
+//    }
 
     @RequestMapping(value = "/search_page", method = RequestMethod.GET)
     public String searchHome(Model model) {
