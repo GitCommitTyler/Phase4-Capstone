@@ -18,6 +18,7 @@
 	  <div class="container-fluid">
 	    <a class="navbar-brand" href="/">Music Website</a>
 	      <ul class="navbar-nav me-auto mb-2 mb-lg-0"> 
+	      	<li><a class="nav-link active" aria-current="page" href="/search_page">Search</a></li>
 	      	<li><a class="nav-link active" aria-current="page" href="/music_catalog">Music Catalog</a></li>
 	      	<li><a class="nav-link active" aria-current="page" href="/shopping_cart">Shopping Cart</a></li>
 	      </ul>
@@ -31,53 +32,7 @@
 			<h1 class="display-3">Catalog</h1>
 				<div class="jumbotron">
 					<p class="lead">View our music catalog below and select some to add to your cart</p>
-						<form method="get" action="search" class="w-50 mx-auto">
-							<div class="input-group mb-2">
-						        <div class="input-group-prepend">
-						          <div class="input-group-text"><span class="input-group-addon"><i class="fas fa-search"></i></span></div>
-						        </div>
-						    	<input type="text" class="form-control" name="search" placeholder="Search..." id="search" required>
-						    </div>
-						    <div class="input-group mb-2">
-						        <div class="input-group-prepend">
-						          <div class="input-group-text">Genre:</div>
-						        </div>
-							    <select class="custom-select" id="genre" name="genre">
-								    <option selected>Select...</option>
-								    <option value="Country">Country</option>
-								    <option value="Pop">Pop</option>
-								    <option value="Rock">Rock</option>
-								</select>
-							</div>
-							<div class="input-group mb-2">
-								<div class="input-group-prepend">
-						          <div class="input-group-text">Price:</div>
-						        </div>
-							  	<input type="number" id="rangemin" name="rangemin" placeholder="Min:" />
-							  	<input type="number" id="rangemax" name="rangemax" placeholder="Max:" />							  
-							</div>
-							<br><br>
-							<input type="submit" value="Enter" class="btn btn-secondary mb-2"/>
-						</form>
-					<br><br>
-				    <table class="table table-dark table-striped table-bordered table-hover mx-auto">
-				        <thead>
-				            <tr>
-				                <th> Song Name</th>
-				                <th> Album Name</th>
-				                <th> Track Number</th>
-				                <th > Price</th>
-				            </tr>
-				        </thead>
-				    <tbody>
-				        <tr th:each="music, iStat : ${music}" >
-				            <td th:text="${music.name}" />
-				            <td th:text="${music.album.name}" />
-				            <td th:text="${music.trackNumber}" />
-				            <td th:text="${music.price}" />
-				        </tr>
-				        </tbody>
-				    </table>
+						
 				</div>
 			</div>
 		</div>

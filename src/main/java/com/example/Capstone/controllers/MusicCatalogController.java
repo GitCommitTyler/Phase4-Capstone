@@ -44,12 +44,19 @@ public class MusicCatalogController {
     	return modelAndView;
     }
 
-    @RequestMapping(value = "/music_catalog", method = RequestMethod.GET)
-    public String greeting(Model model) {
+    @RequestMapping(value = "/search_page", method = RequestMethod.GET)
+    public String searchHome(Model model) {
 
         Iterable<Music> Musics = musicService.GetAllMusic();
 
         model.addAttribute("music", musicService.GetAllMusic());
+        return "search";
+    }
+    
+    @RequestMapping(value = "/music_catalog", method = RequestMethod.GET)
+    public String greeting(Model model) {
+
+        
         return "music_catalog";
     }
 
@@ -59,7 +66,7 @@ public class MusicCatalogController {
     }
     
     @RequestMapping(value = "/search", method = RequestMethod.GET)
-    public String search(@RequestParam("search") String searchterm, @RequestParam("genre") String genre, Model model) {
+    public String search(@RequestParam("search") String searchterm, @RequestParam("genre") String genre, @RequestParam("rangemin") Integer min, @RequestParam("rangemax") Integer max, Model model) {
     	Iterable<Music> Musics = musicService.GetAllMusic();
     	Iterable<Genre> Genre = genreService.GetAllGenre();
     	
@@ -68,18 +75,22 @@ public class MusicCatalogController {
     	{
     		if(m.getName().toLowerCase().contains(searchterm.toLowerCase()) || m.getAlbum().getName().toLowerCase().contains(searchterm.toLowerCase()))
     		{
-    			Genre gen = genreService.GetGenre(m.getId());
+    			Genre gen = m.getAlbum().getGenre();
     			//System.out.println(gen.getName().toLowerCase());
     			//System.out.println(genre.toLowerCase());
-    			if(genre.toLowerCase().equals("select..."))
-    				musicAL.add(m);
     			if(gen.getName().toLowerCase().equals(genre.toLowerCase()))
-        			musicAL.add(m);
+    			{
+    				System.out.println(min + "  " + max + "  " + m.getPrice().intValue());
+    				if(min == 0 && max == 0)
+    					musicAL.add(m);
+    				else if(m.getPrice().intValue() >= min && m.getPrice().intValue() < max)
+    					musicAL.add(m);
+    			}
     		}
     	}
         model.addAttribute("music", musicAL);
     	
-    	return "music_catalog";
+    	return "search";
     }
 
 }
