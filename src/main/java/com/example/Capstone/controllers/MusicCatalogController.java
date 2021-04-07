@@ -2,33 +2,47 @@ package com.example.Capstone.controllers;
 
 import com.example.Capstone.entities.Genre;
 import com.example.Capstone.entities.Music;
+import com.example.Capstone.entities.User;
 import com.example.Capstone.services.GenreService;
 import com.example.Capstone.services.MusicService;
+import com.example.Capstone.services.UserService;
 
 import java.util.ArrayList;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
-
+import org.springframework.web.servlet.ModelAndView;
 import org.springframework.ui.Model;
 
 
 @Controller
 public class MusicCatalogController {
-
+	@Autowired
+	UserService userService;
 
     @Autowired
     MusicService musicService;
     
     @Autowired
     GenreService genreService;
-
+    
+    @GetMapping(value="/user/index")
+    public ModelAndView userHome() {
+    	ModelAndView modelAndView = new ModelAndView();
+    	Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+    	User user = userService.findUserByUserName(auth.getName());
+    	modelAndView.setViewName("user/index");
+    	return modelAndView;
+    }
 
     @RequestMapping(value = "/music_catalog", method = RequestMethod.GET)
     public String greeting(Model model) {
