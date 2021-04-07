@@ -44,28 +44,28 @@ public class MusicCatalogController {
     	return modelAndView;
     }
 
-    @RequestMapping(value = "/search_page", method = RequestMethod.GET)
+    @RequestMapping(value = "/user/search_page", method = RequestMethod.GET)
     public String searchHome(Model model) {
 
         Iterable<Music> Musics = musicService.GetAllMusic();
 
         model.addAttribute("music", musicService.GetAllMusic());
-        return "search";
+        return "user/search";
     }
     
-    @RequestMapping(value = "/music_catalog", method = RequestMethod.GET)
+    @RequestMapping(value = "/user/music_catalog", method = RequestMethod.GET)
     public String greeting(Model model) {
 
         
-        return "music_catalog";
+        return "user/music_catalog";
     }
 
-    @RequestMapping(value = "/shopping_cart", method = RequestMethod.GET)
+    @RequestMapping(value = "/user/shopping_cart", method = RequestMethod.GET)
     public String cart(Model model) {
-    	return "shopping_cart";
+    	return "user/shopping_cart";
     }
     
-    @RequestMapping(value = "/search", method = RequestMethod.GET)
+    @RequestMapping(value = "/user/search", method = RequestMethod.GET)
     public String search(@RequestParam("search") String searchterm, @RequestParam("genre") String genre, @RequestParam("rangemin") Integer min, @RequestParam("rangemax") Integer max, Model model) {
     	Iterable<Music> Musics = musicService.GetAllMusic();
     	Iterable<Genre> Genre = genreService.GetAllGenre();
@@ -90,7 +90,7 @@ public class MusicCatalogController {
     	}
         model.addAttribute("music", musicAL);
     	
-    	return "search";
+    	return "user/search";
     }
 
 }
