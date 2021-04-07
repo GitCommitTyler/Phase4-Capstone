@@ -16,6 +16,9 @@ public class Music {
 
 	private String name;
 
+	@ManyToOne
+    private Genre genre;
+	
     @ManyToOne
     private Album album;
 
@@ -62,6 +65,14 @@ public class Music {
 
 	public void setName(String name) {
 		this.name = name;
+	}
+
+	public Genre getGenre() {
+		return genre;
+	}
+
+	public void setGenre(Genre genre) {
+		this.genre = genre;
 	}
 
 
