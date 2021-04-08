@@ -56,6 +56,35 @@
 				        </tbody>
 				    </table>
 				    
+				    <form method="get" action="/editMusic" class="w-50 mx-auto">
+						<div class="input-group mb-2">
+					        <div class="input-group-prepend">
+					          <div class="input-group-text"><span class="input-group-addon"><i class="fab fa-slack-hash"></i></span></div>
+					        </div>
+					    	<input type="number" class="form-control" name="editSongID" placeholder="Enter ID of Song to be Edited..." id="editSongID" required>					    	
+					    </div>
+						<div class="input-group mb-2">
+					        <div class="input-group-prepend">
+					          <div class="input-group-text"><span class="input-group-addon"><i class="fas fa-music"></i></span></div>
+					        </div>
+					    	<input type="text" class="form-control" name="editSongName" placeholder="Song Name..." id="editSongName" required>					    	
+					    </div>
+					    <div class="input-group mb-2">
+					        <div class="input-group-prepend">
+					          <div class="input-group-text"><span class="input-group-addon"><i class="fas fa-grip-lines"></i></span></div>
+					        </div>
+					    	<input type="number" class="form-control" name="editTrackNumber" placeholder="Track Number..." id="editTrackNumber" required>					    	
+					    </div>
+					    <div class="input-group mb-2">
+					        <div class="input-group-prepend">
+					          <div class="input-group-text"><span class="input-group-addon"><i class="fas fa-hand-holding-usd"></i></span></div>
+					        </div>
+					    	<input type="number" class="form-control" name="editSongPrice" placeholder="Price..." id="editSongPrice" required>					    	
+					    </div>
+					    <input type="submit" value="Edit" class="btn btn-info"/>
+				    </form>
+				    <br>
+				    
 				    <p class="lead">Albums:</p>
 				    
 				    <table class="table table-info table-striped table-bordered table-hover mx-auto">
@@ -98,16 +127,28 @@
 				        </tbody>
 				    </table>
 				    
-				    <br><br>
-				    <form method="get" action="search" class="w-50 mx-auto">
+				    <br>
+				    <form method="get" action="/addGenre" class="w-50 mx-auto">
 						<div class="input-group mb-2">
 					        <div class="input-group-prepend">
 					          <div class="input-group-text"><span class="input-group-addon"><i class="fas fa-record-vinyl"></i></span></div>
 					        </div>
 					    	<input type="text" class="form-control" name="addGenre" placeholder="Add Genre..." id="addGenre" required>					    	
-					    	<a class="btn btn-info" href="/user/search_page" role="button">Add</a>
+					    	<input type="submit" value="Add" class="btn btn-info"/>
+					    	
 					    </div>
 				    </form>
+				    <form method="get" action="/deleteGenre" class="w-50 mx-auto">
+						<div class="input-group mb-2">
+					        <div class="input-group-prepend">
+					          <div class="input-group-text"><span class="input-group-addon"><i class="fas fa-trash-alt"></i></span></div>
+					        </div>
+					    	<input type="text" class="form-control" name="deleteGenre" placeholder="Delete Genre..." id="deleteGenre" required>					    	
+					    	<input type="submit" value="Delete" class="btn btn-danger"/>
+					    	
+					    </div>
+				    </form>
+				    <br>
 				    
 				    <p class="lead">Users:</p>
 				    

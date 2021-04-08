@@ -34,6 +34,15 @@ public class GenreService {
         }
         return null;
     }
+    public Genre GetGenre(String name)  {
+        Iterable<Genre> g = GetAllGenre();
+        for(Genre gen : g)
+        {
+        	if(gen.getName().equals(name))
+				return gen;
+        }
+        return null;
+    }
 
     public Genre AddGenre(Genre Genre) {
         return GenreRepository.save(Genre);
