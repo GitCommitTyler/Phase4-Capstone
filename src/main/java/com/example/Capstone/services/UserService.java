@@ -28,6 +28,10 @@ public class UserService {
         this.bCryptPasswordEncoder = bCryptPasswordEncoder;
     }
 
+    public Iterable<User> findAllUsers(){
+    	return userRepository.findAll();
+    }
+    
     public User findUserByEmail(String email) {
         return userRepository.findByEmail(email);
     }

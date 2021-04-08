@@ -11,3 +11,4 @@ insert into `music` (id, name, price, track_number, album_id, genre_id) VALUES (
 insert into `music` (id, name, price, track_number, album_id, genre_id) VALUES (4, "Starting Over", 0.99, 1, 2, 2);
 insert into `music` (id, name, price, track_number, album_id, genre_id) VALUES (5, "Over", 5.99, 2, 2, 2);
 insert into `music` (id, name, price, track_number, album_id, genre_id) VALUES (6, "B", 3.99, 3, 2, 2);
+
