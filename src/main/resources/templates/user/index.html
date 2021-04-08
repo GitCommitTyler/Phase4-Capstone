@@ -13,7 +13,7 @@
 	  	}
 	  	
 	  	.carousel{
-	  		height: 200px;
+	  		background-color: rgb(22,22,22);
 	  	}
 	  	
 	  	.card{
@@ -47,16 +47,18 @@
 		<div class="w-75 p-3">
 			<div class="center">
 				<div class="jumbotron" style="background-color: rgb(22,22,22);">
-					<div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
+				
+					<div id="carouselExampleControls" class="carousel slide" data-ride="carousel" >
 					  <div class="carousel-inner" >
-				 
+				 		
 					  	<th:block th:each="page, iStat: ${#numbers.sequence(0, pages-1)}">
 					  		
 					  		<th:block th:switch="${iStat.index}">
 							    <div th:case="${0}"class="carousel-item active" >
+							    	<div class="d-flex flex-nowrap">
 							    	<div class="row row-cols-1 row-cols-lg-5 g-lg-4">
 							    	<th:block th:each="item, iStat2: ${#numbers.sequence(0, itemsPerSlide-1)}">
-							    		<div class="col">
+							    		<div class="col p-2">
 									    	<div th:if="${item+itemsPerSlide*page<newAlbums.size()}" class="card">
 												<div class="card-body">
 													<h5 class="card-title" th:text="${newAlbums.get(item+(itemsPerSlide*page)).Name}"></h5>
@@ -64,12 +66,14 @@
 									      	</div>
 								      	</div>
 							      	</th:block>
+							      	</div>
 							      	</div> 
 							    </div>
 							    <div th:case="*"class="carousel-item justify-content-center" >
-							    	<div class="row row-cols-1 row-cols-lg-5 justify-content-start g-lg-3">
+							    	<div class="d-flex flex-nowrap">
+							    	<div class="row row-cols-1 row-cols-lg-5 justify-content-center g-lg-3">
 							    	<th:block th:each="item, iStat2: ${#numbers.sequence(0, itemsPerSlide-1)}" >
-							    		<div class="col">
+							    		<div class="col p-2">
 										    <div th:if="${item+itemsPerSlide*page<newAlbums.size()}" class="card">
 												<div class="card-body">
 													<h5 class="card-title" th:text="${newAlbums.get(item+(itemsPerSlide*page)).Name}"></h5>
@@ -77,6 +81,7 @@
 									      	</div>
 								      	</div> 
 							      	</th:block>
+							    </div>
 							    </div>
 							    </div> 
 						    </th:block>
@@ -92,7 +97,7 @@
 					    <span class="sr-only">Next</span>
 					  </a>
 					</div>		
-
+					
 				</div>	
 			</div>
 			
