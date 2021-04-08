@@ -1,5 +1,6 @@
 package com.example.Capstone.controllers;
 
+import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -107,4 +108,25 @@ public class AdminController {
 		return "/user/admin";
 	}
 	
+	@RequestMapping(value= "/editMusic", method= RequestMethod.GET)
+	public String editMusic(@RequestParam("editSongName") String editSongName, @RequestParam("editSongID") Integer editSongID, @RequestParam("editTrackNumber") Integer editTrackNumber, @RequestParam("editSongPrice") Integer editSongPrice, Model model) {
+		Iterable<Music> Musics = musicService.GetAllMusic();
+		Iterable<Album> albums = albumService.getAlbums();
+		Iterable<Genre> genres = genreService.GetAllGenre();
+		Iterable<User> users = userService.findAllUsers();
+		
+		if(musicService.findMusic(editSongID) != null)
+		{
+			Music mEdit = musicService.findMusic(editSongID);
+			mEdit.setName(editSongName);
+			mEdit.setTrackNumber(editTrackNumber);
+			mEdit.setPrice(BigDecimal.valueOf(editSongPrice));
+		}
+		
+        model.addAttribute("music", Musics);
+        model.addAttribute("album", albums);
+        model.addAttribute("genre", genres);
+        model.addAttribute("user", users);
+		return "/user/admin";
+	}
 }
