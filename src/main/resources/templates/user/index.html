@@ -12,10 +12,20 @@
 	  		text-align: center;
 	  	}
 	  	
+	  	.carousel{
+	  		height: 200px;
+	  	}
+	  	
+	  	.card{
+	  		max-height: 200px;
+	  		height: 200px;
+	  		width: 200px;
+	  	}
+	  	
 	</style>
 </head>
 
-<body style="background-color: rgb(22,22,22);">
+<body style="background-color: alice-blue;">
 	<header>
 	<nav class="navbar navbar-expand-lg fixed-top navbar-dark bg-dark">
 	  <div class="container-fluid">
@@ -39,25 +49,37 @@
 					<div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
 					  <div class="carousel-inner" >
 				 
-					  	<th:block th:each="album, iStat: ${newAlbums}">
+					  	<th:block th:each="page, iStat: ${#numbers.sequence(0, pages-1)}">
+					  		
 					  		<th:block th:switch="${iStat.index}">
-							    <div th:case="${0}"class="carousel-item active justify-content-center" > 
-							    	<div class="card">
-										<img class="card " src="placeholder.jpg" alt="First slide" style="height: 10%; width: 10%;">
-										<div class="card-body">
-											<h5 class="card-title" th:text="${album.Name}"></h5>
-										</div>
-							      	</div>
+							    <div th:case="${0}"class="carousel-item active" >
+							    	<div class="row row-cols-1 row-cols-lg-5 g-lg-4">
+							    	<th:block th:each="item, iStat2: ${#numbers.sequence(0, itemsPerSlide-1)}">
+							    		<div class="col">
+									    	<div th:if="${item+itemsPerSlide*page<newAlbums.size()}" class="card">
+												<div class="card-body">
+													<h5 class="card-title" th:text="${newAlbums.get(item+(itemsPerSlide*page)).Name}"></h5>
+												</div>
+									      	</div>
+								      	</div>
+							      	</th:block>
+							      	</div> 
 							    </div>
 							    <div th:case="*"class="carousel-item justify-content-center" >
-								    <div class="card">
-										<img class="card " src="placeholder.jpg" alt="First slide" style="height: 10%; width: 10%;">
-										<div class="card-body">
-											<h5 class="card-title" th:text="${album.Name}"></h5>
-										</div>
-							      	</div>
+							    	<div class="row row-cols-1 row-cols-lg-5 justify-content-start g-lg-3">
+							    	<th:block th:each="item, iStat2: ${#numbers.sequence(0, itemsPerSlide-1)}" >
+							    		<div class="col">
+										    <div th:if="${item+itemsPerSlide*page<newAlbums.size()}" class="card">
+												<div class="card-body">
+													<h5 class="card-title" th:text="${newAlbums.get(item+(itemsPerSlide*page)).Name}"></h5>
+												</div>
+									      	</div>
+								      	</div> 
+							      	</th:block>
 							    </div>
+							    </div> 
 						    </th:block>
+						    
 					    </th:block>
 					  </div>
 					  <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
