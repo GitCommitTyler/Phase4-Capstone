@@ -85,6 +85,24 @@
 				    </form>
 				    <br>
 				    
+				    <form method="get" action="/addMusic" class="w-50 mx-auto">
+						<div class="input-group mb-2">
+					        <div class="input-group-prepend">
+					          <div class="input-group-text"><span class="input-group-addon"><i class="fas fa-music"></i></span></div>
+					        </div>
+					    	<input type="text" class="form-control" name="addSongName" placeholder="Song Name..." id="addSongName" required>					    						    	
+					    </div>
+					    
+					    <div class="input-group mb-2">
+					        <div class="input-group-prepend">
+					          <div class="input-group-text"><span class="input-group-addon"><i class="fas fa-hand-holding-usd"></i></span></div>
+					        </div>
+					    	<input type="number" class="form-control" name="addSongPrice" placeholder="Price..." id="addSongPrice" required>					    	
+					    </div>
+					    <input type="submit" value="Add" class="btn btn-info"/>
+				    </form>
+				    <br>
+				    
 				    <p class="lead">Albums:</p>
 				    
 				    <table class="table table-info table-striped table-bordered table-hover mx-auto">
