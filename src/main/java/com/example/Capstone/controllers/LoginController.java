@@ -62,9 +62,9 @@ public class LoginController {
 	     return modelAndView;
 	 }
 	 
-	  @GetMapping(value = "/user/logout")
-	  public String logout() {
-		  
-		  return "login.html";
-	  }
+//	  @GetMapping(value = "/user/logout")
+//	  public String logout() {
+//		  
+//		  return "login.html";
+//	  }
 }
