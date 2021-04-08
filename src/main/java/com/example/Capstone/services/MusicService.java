@@ -41,6 +41,17 @@ public class MusicService {
 
         return (foundMusic);
     }
+    
+    public Music findMusic(Integer id)
+    {
+    	Iterable<Music> all = GetAllMusic();
+    	for(Music m : all)
+    	{
+    		if(m.getId().intValue() == id)
+    			return m;
+    	}
+    	return null;
+    }
 
     public Music AddMusic(Music Music) {
         return MusicRepository.save(Music);

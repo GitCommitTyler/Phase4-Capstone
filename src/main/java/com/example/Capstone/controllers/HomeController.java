@@ -37,11 +37,13 @@ public class HomeController {
 	
 	@RequestMapping(value= "/user/index", method= RequestMethod.GET)
 	public String getNewMusic(Model model) {
-		Iterable<Album> newAlbums = albumService.getNewAlbums(getDateThreshhold());
+		List<Album> newAlbums = (List<Album>)albumService.getNewAlbums(getDateThreshhold());
+		double itemsPerSlide = 5;
+		double pages = Math.ceil(newAlbums.size()/itemsPerSlide);
+		logger.info(Double.toString(pages));
+		model.addAttribute("pages", pages);
+		model.addAttribute("itemsPerSlide", itemsPerSlide);
 		model.addAttribute("newAlbums", newAlbums);
-		List<Integer> numbers = Arrays.asList(1,2,3,4,5);
-		model.addAttribute("numbers", numbers);
-		numbers.forEach(x->logger.info(x.toString()));
 		return "user/index";
 	}
 	

@@ -15,6 +15,13 @@ public class Genre {
 
     private String Name;
 
+    public Genre(){}
+    
+    public Genre(Long id, String Name){
+    	this.id = id;
+    	this.Name = Name;
+    }
+    
 	public Long getId() {
 		return id;
 	}
