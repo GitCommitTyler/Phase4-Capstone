@@ -47,5 +47,24 @@ public class UserService {
         user.setRoles(new HashSet<Role>(Arrays.asList(userRole)));
         return userRepository.save(user);
     }
+    public User updateInfo(User user,String firstName,String lastName,String email) {
+    	if(user==null&&firstName==null&&lastName==null&&email==null) {
+    		return null;
+    	}
+    	else {
+    		user.setEmail(email);
+    		user.setName(firstName);
+    		user.setLastName(lastName);
+    		userRepository.save(user);
+    		return user;
+    	}
+    }
+    public User updatePassword(User user, String password, String confirmPassword) {
+    	if(password.equals(confirmPassword)) {
+    		user.setPassword(bCryptPasswordEncoder.encode(password));
+    		return user;
+    	}
+    	return null;
+    }
 
 }
