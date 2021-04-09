@@ -61,7 +61,7 @@
 					        <div class="input-group-prepend">
 					          <div class="input-group-text"><span class="input-group-addon"><i class="fab fa-slack-hash"></i></span></div>
 					        </div>
-					    	<input type="number" class="form-control" name="editSongID" placeholder="Enter ID of Song to be Edited..." id="editSongID" required>					    	
+					    	<input type="number" class="form-control" name="editSongID" placeholder="ID of Song to be Edited..." id="editSongID" required>					    	
 					    </div>
 						<div class="input-group mb-2">
 					        <div class="input-group-prepend">
@@ -92,7 +92,20 @@
 					        </div>
 					    	<input type="text" class="form-control" name="addSongName" placeholder="Song Name..." id="addSongName" required>					    						    	
 					    </div>
-					    
+					    <div class="input-group mb-2">
+					        <div class="input-group-prepend">
+					          <div class="input-group-text"><span class="input-group-addon"><i class="fas fa-compact-disc"></i></span></div>
+					        </div>
+					        <select class="custom-select" id="addSongAlbum" name="addSongAlbum">
+							    <option th:each="i : ${album}" th:value="${i.name}" th:text="${i.name}"></option>
+							</select>					    	
+					    </div>
+					    <div class="input-group mb-2">
+					        <div class="input-group-prepend">
+					          <div class="input-group-text"><span class="input-group-addon"><i class="fas fa-grip-lines"></i></span></div>
+					        </div>
+					    	<input type="number" class="form-control" name="addTrackNumber" placeholder="Track Number..." id="addTrackNumber" required>					    	
+					    </div>
 					    <div class="input-group mb-2">
 					        <div class="input-group-prepend">
 					          <div class="input-group-text"><span class="input-group-addon"><i class="fas fa-hand-holding-usd"></i></span></div>
