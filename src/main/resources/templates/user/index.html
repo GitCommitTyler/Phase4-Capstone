@@ -16,6 +16,7 @@
        .row {
         overflow-x: auto;
         white-space: nowrap;
+        overflow-y:hidden;
         }
 
        .row > .col-sm-4 {
@@ -38,7 +39,7 @@
 </head>
 
 <body style="background-color: alice-blue;">
-	<header>
+
 	<nav class="navbar navbar-expand-lg fixed-top navbar-dark bg-dark">
 	  <div class="container-fluid">
 	    <a class="navbar-brand" href="/user/index">Music Website</a>
@@ -54,16 +55,17 @@
 	      
 	  </div>
 	</nav>
-	</header>
+
 
 	<br><br>
+
 	<div class="d-flex justify-content-center">
 		<div class="w-75 p-3">
-			<div class="center">
-				<div class="jumbotron" style="">
-				
+			<!-- <div class="center"> -->
+				<div class="jumbotron" >
+					<p class="lead" style="text-justify">New Releases</p>
 					<div class="container-fluid" >
-					    <div class="row flex-nowrap" style="overflow-y:hidden;">
+					    <div class="row flex-nowrap" style="">
 					    	<th:block th:each="album, iStat: ${newAlbums}">
 
 					    		<div class="col">
@@ -80,10 +82,10 @@
 								
 
 					    	</th:block>
-					    		<div class="card" style="min-width:200px">
+					    		<div class="card" style="min-width:200px;">
 							    	<div class="card-body text-wrap" style="min-width:200px">
 										<h5 class="card-title">See All Albums</h5>
-										<a href="#" class="stretched-link"></a>
+										<a href="./allalbums?criterion=&value=" class="stretched-link"></a>
 									</div>
 								</div>
 					    		<div class="modal fade" id="albumModalCenter" tabindex="-1" aria-hidden="true" role="dialog" aria-labelledby="albumModalCenterTitle" >
@@ -108,11 +110,12 @@
 					</div>	
 
 				</div>	
-			</div>
+<!-- 			</div> -->
 
          
 		</div>
 	</div>
+
 		<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
         <script> 
         	var clickedAlbum;

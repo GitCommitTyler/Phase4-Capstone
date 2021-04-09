@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+
+<title>Albums</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns" crossorigin="anonymous"></script>
+
+<style>
+		.center {
+	  		text-align: center;
+	  	}
+.col{
+	padding-bottom:20px;
+}
+
+.card{
+	height:220px;
+	width:220px;
+}
+
+</style>
+
+</head>
+
+<body>
+	<div class="row" style="height:50px;">
+	<nav class="navbar navbar-expand-lg fixed-top navbar-dark bg-dark">
+	  <div class="container-fluid">
+	    <a class="navbar-brand" href="/user/index">Music Website</a>
+	      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+	      	<li><a class="nav-link active" aria-current="page" href="/user/admin">Admin</a></li>
+	      	<li><a class="nav-link active" aria-current="page" href="/user/search_page">Search</a></li> 
+            <li><a class="nav-link active" aria-current="page" href="/user/account">Profile</a></li>
+	      	<li><a class="nav-link active" aria-current="page" href="/user/music_catalog">Music Catalog</a></li>
+	      	<li><a class="nav-link active" aria-current="page" href="/user/shopping_cart">Shopping Cart</a></li>      	  
+	      </ul>
+	      
+	  </div>
+	</nav>
+	</div>
+	
+	<br><br>
+	<div class="center">
+		<p class="lead" style="text-justify;" th:text="${pagetitle}"></p>
+		<div class="container-fluid" style= "display:flex; justify-content:center;">
+		
+		  <div class="d-flex row row-cols-auto">
+		  	<th:block th:each="album, status: ${albumsToShow}">
+			    <div class="col">
+				  <div class="card" th:id="${album.id}" onclick=albumOnClick(id)>
+				    <img src="..." class="card-img-top" alt="...">
+				    <div class="card-body">
+				      <h5 class="card-title" th:text="${album.Name}"></h5>
+				      <a href="#" class="stretched-link" data-toggle="modal"  data-target="#albumModalCenter"></a>
+				    </div>
+				  </div>
+			  	</div>
+		  	</th:block>
+		</div>
+		</div>
+	</div>
+	<div class="modal fade" id="albumModalCenter" tabindex="-1" aria-hidden="true" role="dialog" aria-labelledby="albumModalCenterTitle" >
+	  <div class="modal-dialog modal-dialog-centered" role="document">
+	    <div class="modal-content">
+	      <div class="modal-header">
+	        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+	          <span aria-hidden="true">&times;</span>
+	        </button>
+	      </div>
+	      <div class="modal-body">
+	        <div id="include"></div>
+	      </div>
+	      <div class="modal-footer">
+	        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+	      </div>
+	    </div>
+	  </div>
+	</div>	
+	<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+        <script> 
+        	var clickedAlbum;
+			function albumOnClick(id){
+				clickedAlbum = id;
+				console.log(clickedAlbum);
+/* 				$("#include").load(); */
+				xhr=new XMLHttpRequest();
+				xhr.open("GET", "./album/"+clickedAlbum, true); 
+				xhr.send(); 
+				xhr.onreadystatechange=function(){
+					if(xhr.readyState==4 && xhr.status==200){ 
+						document.getElementById("include").innerHTML = xhr.responseText; 
+						} 
+				} 
+			}
+			$(function(){ 
+                 
+            }); 
+            
+          </script>
+</body>
+</html>
