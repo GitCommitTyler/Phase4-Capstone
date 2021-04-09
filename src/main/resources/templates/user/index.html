@@ -12,16 +12,28 @@
 	  		text-align: center;
 	  	}
 	  	
-	  	.carousel{
-	  		background-color: rgb(22,22,22);
-	  	}
+	  	
+       .row {
+        overflow-x: auto;
+        white-space: nowrap;
+        }
+
+       .row > .col-sm-4 {
+        display: inline-block;
+        float: none;
+        }
+	  	
 	  	
 	  	.card{
+	  		min-height:200px;
 	  		max-height: 200px;
 	  		height: 200px;
 	  		width: 200px;
+			min-width: 220px;
+			
+		
+
 	  	}
-	  	
 	</style>
 </head>
 
@@ -42,66 +54,82 @@
 	</header>
 
 	<br><br>
-	
 	<div class="d-flex justify-content-center">
 		<div class="w-75 p-3">
 			<div class="center">
-				<div class="jumbotron" style="background-color: rgb(22,22,22);">
+				<div class="jumbotron" style="">
 				
-					<div id="carouselExampleControls" class="carousel slide" data-ride="carousel" >
-					  <div class="carousel-inner" >
-				 		
-					  	<th:block th:each="page, iStat: ${#numbers.sequence(0, pages-1)}">
-					  		
-					  		<th:block th:switch="${iStat.index}">
-							    <div th:case="${0}"class="carousel-item active" >
-							    	<div class="d-flex flex-nowrap">
-							    	<div class="row row-cols-1 row-cols-lg-5 g-lg-4">
-							    	<th:block th:each="item, iStat2: ${#numbers.sequence(0, itemsPerSlide-1)}">
-							    		<div class="col p-2">
-									    	<div th:if="${item+itemsPerSlide*page<newAlbums.size()}" class="card">
-												<div class="card-body">
-													<h5 class="card-title" th:text="${newAlbums.get(item+(itemsPerSlide*page)).Name}"></h5>
-												</div>
-									      	</div>
-								      	</div>
-							      	</th:block>
-							      	</div>
-							      	</div> 
-							    </div>
-							    <div th:case="*"class="carousel-item justify-content-center" >
-							    	<div class="d-flex flex-nowrap">
-							    	<div class="row row-cols-1 row-cols-lg-5 justify-content-center g-lg-3">
-							    	<th:block th:each="item, iStat2: ${#numbers.sequence(0, itemsPerSlide-1)}" >
-							    		<div class="col p-2">
-										    <div th:if="${item+itemsPerSlide*page<newAlbums.size()}" class="card">
-												<div class="card-body">
-													<h5 class="card-title" th:text="${newAlbums.get(item+(itemsPerSlide*page)).Name}"></h5>
-												</div>
-									      	</div>
-								      	</div> 
-							      	</th:block>
-							    </div>
-							    </div>
-							    </div> 
-						    </th:block>
-						    
-					    </th:block>
-					  </div>
-					  <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
-					    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-					    <span class="sr-only">Previous</span>
-					  </a>
-					  <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
-					    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-					    <span class="sr-only">Next</span>
-					  </a>
-					</div>		
-					
+					<div class="container-fluid" >
+					    <div class="row flex-nowrap" style="overflow-y:hidden;">
+					    	<th:block th:each="album, iStat: ${newAlbums}">
+
+					    		<div class="col">
+					    			<div class="card" th:id="${album.id}" onclick=albumOnClick(id)>
+					    				<div class="card-body  text-wrap">
+											<h5 class="card-title" th:text="${album.Name}"></h5>
+
+											<a href="#" class="stretched-link" data-toggle="modal"  data-target="#albumModalCenter"></a>
+
+										</div>
+										
+									</div>
+								</div>
+								
+
+					    	</th:block>
+					    		<div class="card" style="min-width:200px">
+							    	<div class="card-body text-wrap" style="min-width:200px">
+										<h5 class="card-title">See All Albums</h5>
+										<a href="#" class="stretched-link"></a>
+									</div>
+								</div>
+					    		<div class="modal fade" id="albumModalCenter" tabindex="-1" aria-hidden="true" role="dialog" aria-labelledby="albumModalCenterTitle" >
+								  <div class="modal-dialog modal-dialog-centered" role="document">
+								    <div class="modal-content">
+								      <div class="modal-header">
+								        <h5 class="modal-title" id="albumModalLongTitle">Album</h5>
+								        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+								          <span aria-hidden="true">&times;</span>
+								        </button>
+								      </div>
+								      <div class="modal-body">
+								        <div id="include"></div>
+								      </div>
+								      <div class="modal-footer">
+								        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+								      </div>
+								    </div>
+								  </div>
+								</div>
+    					</div>
+					</div>	
+
 				</div>	
 			</div>
-			
+
+         
 		</div>
 	</div>
+		<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+        <script> 
+        	var clickedAlbum;
+			function albumOnClick(id){
+				clickedAlbum = id;
+				console.log(clickedAlbum);
+/* 				$("#include").load(); */
+				xhr=new XMLHttpRequest();
+				xhr.open("GET", "./album/"+clickedAlbum, true); 
+				xhr.send(); 
+				xhr.onreadystatechange=function(){
+					if(xhr.readyState==4 && xhr.status==200){ 
+						document.getElementById("include").innerHTML = xhr.responseText; 
+						} 
+				} 
+			}
+			$(function(){ 
+                 
+            }); 
+            
+          </script>
 </body>
 </html>
