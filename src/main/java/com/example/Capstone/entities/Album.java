@@ -27,6 +27,16 @@ public class Album {
 
     private BigDecimal price;
 
+    public Album() {}
+    
+    public Album(String Name, Genre genre, String artist, Date releaseDate, BigDecimal price) {
+    	this.Name = Name;
+    	this.genre = genre;
+    	this.artist = artist;
+    	this.releaseDate = releaseDate;
+    	this.price = price;
+    }
+    
 	public Long getId() {
 		return id;
 	}

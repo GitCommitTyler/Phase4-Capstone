@@ -195,21 +195,23 @@
 					    </div>
 					    <div class="input-group mb-2">
 					        <div class="input-group-prepend">
-					          <div class="input-group-text"><span class="input-group-addon"><i class="fas fa-record-vinyl"></i></span></div>
+					          <div class="input-group-text"><span class="input-group-addon"><i class="fas fa-compact-disc"></i></span></div>
 					        </div>
-					    	<input type="text" class="form-control" name="addAlbumGenre" placeholder="Genre Name..." id="addALbumGenre" required>					    	
+					        <select class="custom-select" id="addAlbumGenre" name="addAlbumGenre">
+							    <option th:each="i : ${genre}" th:value="${i.name}" th:text="${i.name}"></option>
+							</select>					    	
 					    </div>
 					    <div class="input-group mb-2">
 					        <div class="input-group-prepend">
 					          <div class="input-group-text"><span class="input-group-addon"><i class="fas fa-calendar"></i></span></div>
 					        </div>
-					    	<input type="date" class="form-control" name="editAlbumDate" placeholder="Album Date..." id="editAlbumDate" required>					    	
+					    	<input type="date" class="form-control" name="addAlbumDate" placeholder="Album Date..." id="addAlbumDate" required>					    	
 					    </div>
 					    <div class="input-group mb-2">
 					        <div class="input-group-prepend">
 					          <div class="input-group-text"><span class="input-group-addon"><i class="fas fa-hand-holding-usd"></i></span></div>
 					        </div>
-					    	<input type="number" class="form-control" name="editAlbumPrice" placeholder="Price..." id="editAlbumPrice" required>					    	
+					    	<input type="number" class="form-control" name="addAlbumPrice" placeholder="Price..." id="addAlbumPrice" required>					    	
 					    </div>
 					    <input type="submit" value="Add" class="btn btn-info"/>
 				    </form>

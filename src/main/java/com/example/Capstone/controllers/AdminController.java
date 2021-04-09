@@ -1,6 +1,7 @@
 package com.example.Capstone.controllers;
 
 import java.math.BigDecimal;
+import java.sql.Date;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -21,6 +22,7 @@ import com.example.Capstone.entities.Album;
 import com.example.Capstone.entities.Genre;
 import com.example.Capstone.entities.Music;
 import com.example.Capstone.entities.User;
+import com.example.Capstone.repositories.AlbumRepository;
 import com.example.Capstone.services.AlbumService;
 import com.example.Capstone.services.GenreService;
 import com.example.Capstone.services.MusicService;
@@ -121,6 +123,7 @@ public class AdminController {
 			mEdit.setName(editSongName);
 			mEdit.setTrackNumber(editTrackNumber);
 			mEdit.setPrice(BigDecimal.valueOf(editSongPrice));
+			musicService.AddMusic(mEdit);
 		}
 		
         model.addAttribute("music", Musics);
@@ -182,8 +185,62 @@ public class AdminController {
 				if(user.getId() == editActive)
 				{
 					user.setActive(false);
+					userService.saveUser(user);
 				}
 			}
+		}
+		
+        model.addAttribute("music", Musics);
+        model.addAttribute("album", albums);
+        model.addAttribute("genre", genres);
+        model.addAttribute("user", users);
+		return "/user/admin";
+	}
+	
+	@RequestMapping(value= "/editAlbum", method= RequestMethod.GET)
+	public String editAlbum(@RequestParam("editAlbumID") Integer editAlbumID, @RequestParam("editAlbumName") String editAlbumName, @RequestParam("editAlbumDate") Date editAlbumDate, @RequestParam("editAlbumPrice") Integer editAlbumPrice, Model model) {
+		Iterable<Music> Musics = musicService.GetAllMusic();
+		Iterable<Album> albums = albumService.getAlbums();
+		Iterable<Genre> genres = genreService.GetAllGenre();
+		Iterable<User> users = userService.findAllUsers();
+		
+		
+		for(Album a : albums)
+		{
+			if(a.getId().equals(new Long(editAlbumID)))
+			{
+				a = albumService.getAlbum(a.getName());
+				a.setName(editAlbumName);
+				a.setReleaseDate(editAlbumDate);
+				a.setPrice(BigDecimal.valueOf(editAlbumPrice));	
+				albumService.save(a);
+			}
+		}
+		
+        model.addAttribute("music", Musics);
+        model.addAttribute("album", albums);
+        model.addAttribute("genre", genres);
+        model.addAttribute("user", users);
+		return "/user/admin";
+	}
+	
+	@RequestMapping(value= "/addAlbum", method= RequestMethod.GET)
+	public String editAlbum(@RequestParam("addAlbumName") String addAlbumName, @RequestParam("addArtistName") String addArtistName, @RequestParam("addAlbumGenre") String addAlbumGenre, @RequestParam("addAlbumDate") Date addAlbumDate, @RequestParam("addAlbumPrice") Integer addAlbumPrice, Model model) {
+		Iterable<Music> Musics = musicService.GetAllMusic();
+		Iterable<Album> albums = albumService.getAlbums();
+		Iterable<Genre> genres = genreService.GetAllGenre();
+		Iterable<User> users = userService.findAllUsers();
+		
+		ArrayList<Album> albumAL = (ArrayList<Album>) albums;
+		ArrayList<String> names = new ArrayList<>();
+		for(Album a : albumAL)
+			names.add(a.getName());
+		if(!names.contains(addAlbumName))
+		{
+			Genre gen = genreService.GetGenre(addAlbumGenre);
+			Album album = new Album(addAlbumName, gen, addArtistName, addAlbumDate, BigDecimal.valueOf(addAlbumPrice));
+			albumService.save(album);
+			albums = albumService.getAlbums();
 		}
 		
         model.addAttribute("music", Musics);
