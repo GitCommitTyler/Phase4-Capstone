@@ -40,7 +40,7 @@ public class AlbumService {
 		return albumRepository.getAlbumsByReleaseDateGreaterThan(pastDate);
 	}
 	
-	public Album getAlbum(String albumName)
+	public Album getAlbumsByName(String albumName)
 	{
 		Iterable<Album> allbums = getAlbums();
 		for(Album a : allbums)
