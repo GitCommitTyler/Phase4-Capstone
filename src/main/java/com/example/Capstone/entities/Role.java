@@ -2,6 +2,8 @@ package com.example.Capstone.entities;
 
 import javax.persistence.*;
 
+//import com.example.Capstone.entities.User;
+
 @Entity
 @Table(name = "roles")
 public class Role {
@@ -11,6 +13,12 @@ public class Role {
     private int id;
     @Column(name = "role")
     private String role;
+    
+//    @ManyToOne(fetch =FetchType.LAZY)
+//	@JoinColumn(name="user_id", nullable=true)
+//	//referencedColumnName = "id"
+//	private User user;
+    
 	public int getId() {
 		return id;
 	}

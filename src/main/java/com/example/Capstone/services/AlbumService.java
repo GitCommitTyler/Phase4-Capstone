@@ -50,5 +50,10 @@ public class AlbumService {
 		}
 		return null;
 	}
+	
+	public void save(Album a)
+	{
+		albumRepository.save(a);
+	}
 }
 
