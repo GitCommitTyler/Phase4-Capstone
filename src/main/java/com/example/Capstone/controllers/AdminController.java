@@ -162,4 +162,34 @@ public class AdminController {
         model.addAttribute("user", users);
 		return "/user/admin";
 	}
+	
+	@RequestMapping(value= "/editUserActive", method= RequestMethod.GET)
+	public String editActive(@RequestParam("editActive") Integer editActive, Model model)
+	{
+		Iterable<Music> Musics = musicService.GetAllMusic();
+		Iterable<Album> albums = albumService.getAlbums();
+		Iterable<Genre> genres = genreService.GetAllGenre();
+		Iterable<User> users = userService.findAllUsers();
+		
+		ArrayList<User> userAL = (ArrayList<User>) users;
+		ArrayList<Integer> ids = new ArrayList<>();
+		for(User u : userAL)
+			ids.add(u.getId());
+		if(ids.contains(editActive))
+		{
+			for(User user : userAL)
+			{	
+				if(user.getId() == editActive)
+				{
+					user.setActive(false);
+				}
+			}
+		}
+		
+        model.addAttribute("music", Musics);
+        model.addAttribute("album", albums);
+        model.addAttribute("genre", genres);
+        model.addAttribute("user", users);
+		return "/user/admin";
+	}
 }
