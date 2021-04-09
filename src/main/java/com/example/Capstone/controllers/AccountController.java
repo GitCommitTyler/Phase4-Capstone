@@ -3,11 +3,14 @@ package com.example.Capstone.controllers;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.example.Capstone.entities.Orders;
 import com.example.Capstone.entities.User;
+import com.example.Capstone.services.OrdersService;
 import com.example.Capstone.services.UserService;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -17,10 +20,18 @@ public class AccountController {
 	@Autowired
 	UserService userService;
 	
+	@Autowired
+    OrdersService ordersService;
+	
 	@GetMapping(value="/user/account")
 	public String getAccountInfo(Model model) {
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		User user = userService.findUserByUserName(auth.getName());
+		
+		////////////
+		Iterable<Orders> orders = ordersService.GetOrdersByUser(user);
+		model.addAttribute("orders",orders);
+		///////////////
 		model.addAttribute("user",user);
 		return "user/account";
 	}

@@ -1,6 +1,7 @@
 package com.example.Capstone.services;
 
 
+import com.example.Capstone.entities.Album;
 import com.example.Capstone.entities.Music;
 import com.example.Capstone.repositories.MusicRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -40,6 +41,10 @@ public class MusicService {
         Optional<Music> foundMusic = MusicRepository.findById(id);
 
         return (foundMusic);
+    }
+    
+    public Iterable<Music> GetMusicByAlbum(Album album){
+    	return MusicRepository.findByAlbum(album);
     }
     
     public Music findMusic(Integer id)

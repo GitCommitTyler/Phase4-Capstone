@@ -61,7 +61,7 @@
 					        <div class="input-group-prepend">
 					          <div class="input-group-text"><span class="input-group-addon"><i class="fab fa-slack-hash"></i></span></div>
 					        </div>
-					    	<input type="number" class="form-control" name="editSongID" placeholder="Enter ID of Song to be Edited..." id="editSongID" required>					    	
+					    	<input type="number" class="form-control" name="editSongID" placeholder="ID of Song to be Edited..." id="editSongID" required>					    	
 					    </div>
 						<div class="input-group mb-2">
 					        <div class="input-group-prepend">
@@ -92,7 +92,20 @@
 					        </div>
 					    	<input type="text" class="form-control" name="addSongName" placeholder="Song Name..." id="addSongName" required>					    						    	
 					    </div>
-					    
+					    <div class="input-group mb-2">
+					        <div class="input-group-prepend">
+					          <div class="input-group-text"><span class="input-group-addon"><i class="fas fa-compact-disc"></i></span></div>
+					        </div>
+					        <select class="custom-select" id="addSongAlbum" name="addSongAlbum">
+							    <option th:each="i : ${album}" th:value="${i.name}" th:text="${i.name}"></option>
+							</select>					    	
+					    </div>
+					    <div class="input-group mb-2">
+					        <div class="input-group-prepend">
+					          <div class="input-group-text"><span class="input-group-addon"><i class="fas fa-grip-lines"></i></span></div>
+					        </div>
+					    	<input type="number" class="form-control" name="addTrackNumber" placeholder="Track Number..." id="addTrackNumber" required>					    	
+					    </div>
 					    <div class="input-group mb-2">
 					        <div class="input-group-prepend">
 					          <div class="input-group-text"><span class="input-group-addon"><i class="fas fa-hand-holding-usd"></i></span></div>
@@ -102,6 +115,17 @@
 					    <input type="submit" value="Add" class="btn btn-info"/>
 				    </form>
 				    <br>
+				    
+				    <form method="get" action="/deleteSong" class="w-50 mx-auto">
+						<div class="input-group mb-2">
+					        <div class="input-group-prepend">
+					          <div class="input-group-text"><span class="input-group-addon"><i class="fab fa-slack-hash"></i></span></div>
+					        </div>
+					    	<input type="number" class="form-control" name="deleteSong" placeholder="Song ID..." id="deleteSong" required>					    	
+					    	<input type="submit" value="Delete" class="btn btn-danger"/>
+					    </div>
+					</form>
+					<br>
 				    
 				    <p class="lead">Albums:</p>
 				    
@@ -127,6 +151,82 @@
 				        </tr>
 				        </tbody>
 				    </table>
+				    <form method="get" action="/editAlbum" class="w-50 mx-auto">
+						<div class="input-group mb-2">
+					        <div class="input-group-prepend">
+					          <div class="input-group-text"><span class="input-group-addon"><i class="fab fa-slack-hash"></i></span></div>
+					        </div>
+					    	<input type="number" class="form-control" name="editAlbumID" placeholder="ID of Album to be Edited..." id="editAlbumID" required>					    	
+					    </div>
+						<div class="input-group mb-2">
+					        <div class="input-group-prepend">
+					          <div class="input-group-text"><span class="input-group-addon"><i class="fas fa-compact-disc"></i></span></div>
+					        </div>
+					    	<input type="text" class="form-control" name="editAlbumName" placeholder="Album Name..." id="editAlbumName" required>					    	
+					    </div>
+					    <div class="input-group mb-2">
+					        <div class="input-group-prepend">
+					          <div class="input-group-text"><span class="input-group-addon"><i class="fas fa-calendar"></i></span></div>
+					        </div>
+					    	<input type="date" class="form-control" name="editAlbumDate" placeholder="Album Date..." id="editAlbumDate" required>					    	
+					    </div>
+					    <div class="input-group mb-2">
+					        <div class="input-group-prepend">
+					          <div class="input-group-text"><span class="input-group-addon"><i class="fas fa-hand-holding-usd"></i></span></div>
+					        </div>
+					    	<input type="number" class="form-control" name="editAlbumPrice" placeholder="Price..." id="editAlbumPrice" required>					    	
+					    </div>
+					    <input type="submit" value="Edit" class="btn btn-info"/>
+				    </form>
+				    <br>
+				    
+				    <form method="get" action="/addAlbum" class="w-50 mx-auto">
+						<div class="input-group mb-2">
+					        <div class="input-group-prepend">
+					          <div class="input-group-text"><span class="input-group-addon"><i class="fas fa-compact-disc"></i></span></div>
+					        </div>
+					    	<input type="text" class="form-control" name="addAlbumName" placeholder="Album Name..." id="addAlbumName" required>					    	
+					    </div>
+					    <div class="input-group mb-2">
+					        <div class="input-group-prepend">
+					          <div class="input-group-text"><span class="input-group-addon"><i class="fas fa-microphone"></i></span></div>
+					        </div>
+					    	<input type="text" class="form-control" name="addArtistName" placeholder="Artist Name..." id="addArtistName" required>					    	
+					    </div>
+					    <div class="input-group mb-2">
+					        <div class="input-group-prepend">
+					          <div class="input-group-text"><span class="input-group-addon"><i class="fas fa-compact-disc"></i></span></div>
+					        </div>
+					        <select class="custom-select" id="addAlbumGenre" name="addAlbumGenre">
+							    <option th:each="i : ${genre}" th:value="${i.name}" th:text="${i.name}"></option>
+							</select>					    	
+					    </div>
+					    <div class="input-group mb-2">
+					        <div class="input-group-prepend">
+					          <div class="input-group-text"><span class="input-group-addon"><i class="fas fa-calendar"></i></span></div>
+					        </div>
+					    	<input type="date" class="form-control" name="addAlbumDate" placeholder="Album Date..." id="addAlbumDate" required>					    	
+					    </div>
+					    <div class="input-group mb-2">
+					        <div class="input-group-prepend">
+					          <div class="input-group-text"><span class="input-group-addon"><i class="fas fa-hand-holding-usd"></i></span></div>
+					        </div>
+					    	<input type="number" class="form-control" name="addAlbumPrice" placeholder="Price..." id="addAlbumPrice" required>					    	
+					    </div>
+					    <input type="submit" value="Add" class="btn btn-info"/>
+				    </form>
+				    <br>
+				    <form method="get" action="/deleteAlbum" class="w-50 mx-auto">
+						<div class="input-group mb-2">
+					        <div class="input-group-prepend">
+					          <div class="input-group-text"><span class="input-group-addon"><i class="fab fa-slack-hash"></i></span></div>
+					        </div>
+					    	<input type="number" class="form-control" name="deleteAlbum" placeholder="Album ID..." id="deleteAlbum" required>					    	
+					    	<input type="submit" value="Delete" class="btn btn-danger"/>
+					    </div>
+					</form>
+					<br>
+				    <br>
 				    
 				    <p class="lead">Genres:</p>
 				    
@@ -194,6 +294,16 @@
 				        </tr>
 				        </tbody>
 				    </table>
+				    
+				    <form method="get" action="/editUserActive" class="w-50 mx-auto">
+						<div class="input-group mb-2">
+					        <div class="input-group-prepend">
+					          <div class="input-group-text"><span class="input-group-addon"><i class="fab fa-slack-hash"></i></span></div>
+					        </div>
+					    	<input type="number" class="form-control" name="editActive" placeholder="ID of User to be Edited..." id="editActive" required>					    	
+					    	<input type="submit" value="Inactive" class="btn btn-danger"/>
+					    </div>
+					</form>
 				</div>
 			</div>
 		</div>

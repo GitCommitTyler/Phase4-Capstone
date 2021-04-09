@@ -9,4 +9,6 @@ import com.example.Capstone.entities.User;
 public interface UserRepository extends JpaRepository<User, Long> {
     User findByEmail(String email);
     User findByUserName(String userName);
+    User findByName(String name);
+    User findById(int id);
 }
