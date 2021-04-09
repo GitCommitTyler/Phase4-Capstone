@@ -144,9 +144,9 @@ public class AdminController {
 		ArrayList<String> names = new ArrayList<>();
 		for(Music mus : musicAL)
 			names.add(mus.getName());
-		if(!names.contains(addSongName) && albumService.getAlbum(addSongAlbum) != null)
+		if(!names.contains(addSongName) && albumService.getAlbumsByName(addSongAlbum) != null)
 		{
-			Album a = albumService.getAlbum(addSongAlbum);
+			Album a = albumService.getAlbumsByName(addSongAlbum);
 			Long size = new Long(musicAL.size());
 			//Music m = new Music(addSongName, a.getGenre(), a, addTrackNumber, BigDecimal.valueOf(addSongPrice));
 			Music mus = new Music();
@@ -209,7 +209,7 @@ public class AdminController {
 		{
 			if(a.getId().equals(new Long(editAlbumID)))
 			{
-				a = albumService.getAlbum(a.getName());
+				a = albumService.getAlbumsByName(a.getName());
 				a.setName(editAlbumName);
 				a.setReleaseDate(editAlbumDate);
 				a.setPrice(BigDecimal.valueOf(editAlbumPrice));	
