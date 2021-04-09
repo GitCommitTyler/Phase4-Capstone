@@ -5,6 +5,7 @@ import com.example.Capstone.entities.Music;
 import com.example.Capstone.entities.User;
 import com.example.Capstone.services.GenreService;
 import com.example.Capstone.services.MusicService;
+import com.example.Capstone.services.OrdersService;
 import com.example.Capstone.services.UserService;
 
 import java.util.ArrayList;
@@ -16,6 +17,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -34,6 +36,8 @@ public class MusicCatalogController {
     
     @Autowired
     GenreService genreService;
+    
+    
     
 //    @GetMapping(value="/user/index")
 //    public ModelAndView userHome() {
@@ -92,5 +96,6 @@ public class MusicCatalogController {
     	
     	return "user/search";
     }
+ 
 
 }

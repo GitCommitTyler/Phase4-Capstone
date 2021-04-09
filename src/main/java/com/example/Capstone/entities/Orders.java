@@ -17,6 +17,8 @@ import javax.persistence.TemporalType;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
+import com.example.Capstone.entities.User;
+
 
 
 
@@ -32,10 +34,45 @@ public class Orders {
 	@Temporal(TemporalType.DATE)
 	private Date orderDate;
 	
-//	@ManyToOne
-//	@JoinColumn(name="user_id", nullable=true)
-//	private User user;
+	@ManyToOne
+	@JoinColumn(name="user_id", nullable=true)
+	private User user;
+	
+	public Orders(Date orderDate, User user) {
+		super();
+		
+		this.orderDate = orderDate;
+		this.user = user;
+	}
+	
+	public Orders() {
+		
+	}
 //	
 //	@OneToMany(cascade = CascadeType.ALL, mappedBy="orders")
 //    private List<Music> musics;
+
+	public Integer getId() {
+		return id;
+	}
+
+//	public void setId(Integer id) {
+//		this.id = id;
+//	}
+
+	public Date getOrderDate() {
+		return orderDate;
+	}
+
+	public void setOrderDate(Date orderDate) {
+		this.orderDate = orderDate;
+	}
+
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
+	}
 }
