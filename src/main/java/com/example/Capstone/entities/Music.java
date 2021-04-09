@@ -25,7 +25,18 @@ public class Music {
     private int trackNumber;
 
     private BigDecimal price;
-
+    
+    public Music() {}
+    
+    public Music(String name, Genre genre, Album album, int trackNumber, BigDecimal price)
+    {
+    	this.name = name;
+    	this.genre = genre;
+    	this.album = album;
+    	this.trackNumber = trackNumber;
+    	this.price = price;
+    }
+    
 	public String getName() {
 		// TODO Auto-generated method stub
 		return name;

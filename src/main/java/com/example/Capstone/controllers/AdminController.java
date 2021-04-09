@@ -129,4 +129,37 @@ public class AdminController {
         model.addAttribute("user", users);
 		return "/user/admin";
 	}
+	
+	@RequestMapping(value= "/addMusic", method= RequestMethod.GET)
+	public String addMusic(@RequestParam("addSongName") String addSongName, @RequestParam("addSongAlbum") String addSongAlbum, @RequestParam("addTrackNumber") Integer addTrackNumber, @RequestParam("addSongPrice") Integer addSongPrice, Model model) {
+		Iterable<Music> Musics = musicService.GetAllMusic();
+		Iterable<Album> albums = albumService.getAlbums();
+		Iterable<Genre> genres = genreService.GetAllGenre();
+		Iterable<User> users = userService.findAllUsers();
+		
+		ArrayList<Music> musicAL = (ArrayList<Music>) Musics;
+		ArrayList<String> names = new ArrayList<>();
+		for(Music mus : musicAL)
+			names.add(mus.getName());
+		if(!names.contains(addSongName) && albumService.getAlbum(addSongAlbum) != null)
+		{
+			Album a = albumService.getAlbum(addSongAlbum);
+			Long size = new Long(musicAL.size());
+			//Music m = new Music(addSongName, a.getGenre(), a, addTrackNumber, BigDecimal.valueOf(addSongPrice));
+			Music mus = new Music();
+			mus.setName(addSongName);
+			mus.setGenre(a.getGenre());
+			mus.setAlbum(a);
+			mus.setTrackNumber(addTrackNumber);
+			mus.setPrice(BigDecimal.valueOf(addSongPrice));
+			musicService.AddMusic(mus);
+			Musics = musicService.GetAllMusic();
+		}
+		
+        model.addAttribute("music", Musics);
+        model.addAttribute("album", albums);
+        model.addAttribute("genre", genres);
+        model.addAttribute("user", users);
+		return "/user/admin";
+	}
 }
