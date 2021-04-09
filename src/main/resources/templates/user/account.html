@@ -96,6 +96,30 @@
                   </div>
                   <div class="tab-pane fade" id="nav-orders" role="tabpanel" aria-labelledby="nav-orders-tab">
                      <p>Order Tab</p>
+                     <!-- This is my code -->
+                     
+                     
+                     <table class="table table-info table-striped table-bordered table-hover mx-auto">
+				        <thead>
+				            <tr>
+				                <th> Order ID</th>
+				                <!-- <th> User ID</th> -->
+				                <th> Order Date</th>
+				                
+				            </tr>
+				        </thead>
+				    <tbody>
+				        <tr th:each="orders, iStat : ${orders}" >
+				            <td th:text="${orders.id}" />
+				            <!-- <td th:text="${orders.user.id}" /> -->
+				            <td th:text="${orders.orderDate}" />
+				            
+				        </tr>
+				        </tbody>
+				    </table>
+				    
+				    
+				    
                   </div>
                 </div>
 				</div>
