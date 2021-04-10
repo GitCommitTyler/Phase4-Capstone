@@ -44,10 +44,7 @@
 						          <div class="input-group-text">Genre:</div>
 						        </div>
 							    <select class="custom-select" id="genre" name="genre">
-								   
-								    <option value="Country">Country</option>
-								    <option value="Pop">Pop</option>
-								    <option value="Rock">Rock</option>
+								    <option th:each="i : ${genre}" th:value="${i.name}" th:text="${i.name}"></option>
 								</select>
 							</div>
 							<div class="input-group mb-2">

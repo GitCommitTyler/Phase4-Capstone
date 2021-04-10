@@ -4,6 +4,9 @@ package com.example.Capstone.entities;
 import lombok.Data;
 
 import javax.persistence.*;
+
+import org.hibernate.annotations.GenericGenerator;
+
 import java.math.BigDecimal;
 import java.util.Date;
 import java.util.List;
@@ -12,8 +15,15 @@ import java.util.List;
 @Data
 public class Album {
 
-    @Id
-    @GeneratedValue(strategy= GenerationType.AUTO)
+	@Id
+	@GeneratedValue(
+	    strategy= GenerationType.AUTO,
+	    generator="native"
+	)
+	@GenericGenerator(
+	    name = "native",
+	    strategy = "native"
+	)
     private Long id;
 
     private String Name;

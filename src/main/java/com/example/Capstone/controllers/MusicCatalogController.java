@@ -52,8 +52,9 @@ public class MusicCatalogController {
     public String searchHome(Model model) {
 
         Iterable<Music> Musics = musicService.GetAllMusic();
-
+        Iterable<Genre> genres = genreService.GetAllGenre();
         model.addAttribute("music", musicService.GetAllMusic());
+        model.addAttribute("genre", genres);
         return "user/search";
     }
     
@@ -93,7 +94,7 @@ public class MusicCatalogController {
     		}
     	}
         model.addAttribute("music", musicAL);
-    	
+        model.addAttribute("genre", Genre);
     	return "user/search";
     }
  
