@@ -289,8 +289,9 @@ public class AdminController {
 		Long l = new Long(deleteAlbum);
 		for(Album a : albums)
 		{
-			if(a.getId().equals(l))
+			if(a.getId().equals(l) && !hasSongs(a))
 			{
+				
 				albumService.delete(a);
 				albums = albumService.getAlbums();
 			}
@@ -301,5 +302,16 @@ public class AdminController {
         model.addAttribute("genre", genres);
         model.addAttribute("user", users);
 		return "/user/admin";
+	}
+	
+	public boolean hasSongs(Album a)
+	{
+		Iterable<Music> Musics = musicService.GetAllMusic();
+		for(Music mus : Musics)
+		{
+			if(mus.getAlbum().equals(a))
+				return true;
+		}
+		return false;
 	}
 }
