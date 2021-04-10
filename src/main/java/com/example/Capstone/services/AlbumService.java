@@ -60,5 +60,10 @@ public class AlbumService {
 	{
 		albumRepository.save(a);
 	}
+	
+	public void delete(Album a)
+	{
+		albumRepository.delete(a);
+	}
 }
 

@@ -134,7 +134,7 @@ public class AdminController {
 	}
 	
 	@RequestMapping(value= "/addMusic", method= RequestMethod.GET)
-	public String addMusic(@RequestParam("addSongName") String addSongName, @RequestParam("addSongAlbum") String addSongAlbum, @RequestParam("addTrackNumber") Integer addTrackNumber, @RequestParam("addSongPrice") Integer addSongPrice, Model model) {
+	public String addMusic(@RequestParam("addSongID") Integer addSongID, @RequestParam("addSongName") String addSongName, @RequestParam("addSongAlbum") String addSongAlbum, @RequestParam("addTrackNumber") Integer addTrackNumber, @RequestParam("addSongPrice") Integer addSongPrice, Model model) {
 		Iterable<Music> Musics = musicService.GetAllMusic();
 		Iterable<Album> albums = albumService.getAlbums();
 		Iterable<Genre> genres = genreService.GetAllGenre();
@@ -142,14 +142,19 @@ public class AdminController {
 		
 		ArrayList<Music> musicAL = (ArrayList<Music>) Musics;
 		ArrayList<String> names = new ArrayList<>();
+		ArrayList<Long> ids = new ArrayList<>();
 		for(Music mus : musicAL)
-			names.add(mus.getName());
-		if(!names.contains(addSongName) && albumService.getAlbum(addSongAlbum) != null)
 		{
-			Album a = albumService.getAlbum(addSongAlbum);
-			Long size = new Long(musicAL.size());
+			names.add(mus.getName());
+			ids.add(mus.getId());
+		}
+		Long id = new Long(addSongID);
+		if(!names.contains(addSongName) && albumService.getAlbumsByName(addSongAlbum) != null && !ids.contains(id))
+		{
+			Album a = albumService.getAlbumsByName(addSongAlbum);
 			//Music m = new Music(addSongName, a.getGenre(), a, addTrackNumber, BigDecimal.valueOf(addSongPrice));
-			Music mus = new Music();
+			Music mus = new Music(id);
+			//mus.setId(id);
 			mus.setName(addSongName);
 			mus.setGenre(a.getGenre());
 			mus.setAlbum(a);
@@ -157,6 +162,30 @@ public class AdminController {
 			mus.setPrice(BigDecimal.valueOf(addSongPrice));
 			musicService.AddMusic(mus);
 			Musics = musicService.GetAllMusic();
+		}
+		
+        model.addAttribute("music", Musics);
+        model.addAttribute("album", albums);
+        model.addAttribute("genre", genres);
+        model.addAttribute("user", users);
+		return "/user/admin";
+	}
+	
+	@RequestMapping(value= "/deleteSong", method= RequestMethod.GET)
+	public String deleteSong(@RequestParam("deleteSong") Integer deleteSong, Model model) {
+		Iterable<Music> Musics = musicService.GetAllMusic();
+		Iterable<Album> albums = albumService.getAlbums();
+		Iterable<Genre> genres = genreService.GetAllGenre();
+		Iterable<User> users = userService.findAllUsers();
+		
+		Long l = new Long(deleteSong);
+		for(Music m : Musics)
+		{
+			if(m.getId().equals(l))
+			{
+				musicService.DeleteMusic(m);
+				Musics = musicService.GetAllMusic();
+			}
 		}
 		
         model.addAttribute("music", Musics);
@@ -185,7 +214,7 @@ public class AdminController {
 				if(user.getId() == editActive)
 				{
 					user.setActive(false);
-					userService.saveUser(user);
+					//userService.saveUser(user);
 				}
 			}
 		}
@@ -209,7 +238,7 @@ public class AdminController {
 		{
 			if(a.getId().equals(new Long(editAlbumID)))
 			{
-				a = albumService.getAlbum(a.getName());
+				a = albumService.getAlbumsByName(a.getName());
 				a.setName(editAlbumName);
 				a.setReleaseDate(editAlbumDate);
 				a.setPrice(BigDecimal.valueOf(editAlbumPrice));	
@@ -225,7 +254,7 @@ public class AdminController {
 	}
 	
 	@RequestMapping(value= "/addAlbum", method= RequestMethod.GET)
-	public String editAlbum(@RequestParam("addAlbumName") String addAlbumName, @RequestParam("addArtistName") String addArtistName, @RequestParam("addAlbumGenre") String addAlbumGenre, @RequestParam("addAlbumDate") Date addAlbumDate, @RequestParam("addAlbumPrice") Integer addAlbumPrice, Model model) {
+	public String editAlbum(@RequestParam("addAlbumID") Integer addAlbumID, @RequestParam("addAlbumName") String addAlbumName, @RequestParam("addArtistName") String addArtistName, @RequestParam("addAlbumGenre") String addAlbumGenre, @RequestParam("addAlbumDate") Date addAlbumDate, @RequestParam("addAlbumPrice") Integer addAlbumPrice, Model model) {
 		Iterable<Music> Musics = musicService.GetAllMusic();
 		Iterable<Album> albums = albumService.getAlbums();
 		Iterable<Genre> genres = genreService.GetAllGenre();
@@ -241,6 +270,30 @@ public class AdminController {
 			Album album = new Album(addAlbumName, gen, addArtistName, addAlbumDate, BigDecimal.valueOf(addAlbumPrice));
 			albumService.save(album);
 			albums = albumService.getAlbums();
+		}
+		
+        model.addAttribute("music", Musics);
+        model.addAttribute("album", albums);
+        model.addAttribute("genre", genres);
+        model.addAttribute("user", users);
+		return "/user/admin";
+	}
+	
+	@RequestMapping(value= "/deleteAlbum", method= RequestMethod.GET)
+	public String deleteAlbum(@RequestParam("deleteAlbum") Integer deleteAlbum, Model model) {
+		Iterable<Music> Musics = musicService.GetAllMusic();
+		Iterable<Album> albums = albumService.getAlbums();
+		Iterable<Genre> genres = genreService.GetAllGenre();
+		Iterable<User> users = userService.findAllUsers();
+		
+		Long l = new Long(deleteAlbum);
+		for(Album a : albums)
+		{
+			if(a.getId().equals(l))
+			{
+				albumService.delete(a);
+				albums = albumService.getAlbums();
+			}
 		}
 		
         model.addAttribute("music", Musics);

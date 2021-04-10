@@ -4,14 +4,24 @@ package com.example.Capstone.entities;
 import lombok.Data;
 
 import javax.persistence.*;
+
+import org.hibernate.annotations.GenericGenerator;
+
 import java.math.BigDecimal;
 import java.util.Date;
 
 @Entity
 @Data
 public class Music {
-    @Id
-    @GeneratedValue(strategy= GenerationType.AUTO)
+	@Id
+	@GeneratedValue(
+	    strategy= GenerationType.AUTO,
+	    generator="native"
+	)
+	@GenericGenerator(
+	    name = "native",
+	    strategy = "native"
+	)
     private Long id;
 
 	private String name;
@@ -27,6 +37,10 @@ public class Music {
     private BigDecimal price;
     
     public Music() {}
+    
+    public Music(Long ID) {
+    	this.id = ID;
+    }
     
     public Music(String name, Genre genre, Album album, int trackNumber, BigDecimal price)
     {
