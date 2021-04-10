@@ -76,8 +76,9 @@ public class AdminController {
 			Genre g = new Genre(size+1, addGenre);
 			genreService.AddGenre(g);
 			genres = genreService.GetAllGenre();
+			model.addAttribute("genreStatusMessage", "Successfully Added Genre");
 		}
-		
+		else model.addAttribute("genreStatusMessage", "Error: Genre Already Exists");
         model.addAttribute("music", Musics);
         model.addAttribute("album", albums);
         model.addAttribute("genre", genres);
@@ -101,7 +102,9 @@ public class AdminController {
 		{
 			genreService.DeleteMusic(genreService.GetGenre(deleteGenre));
 			genres = genreService.GetAllGenre();
+			model.addAttribute("genreStatusMessage", "Successfully Deleted Genre");
 		}
+		else model.addAttribute("genreStatusMessage", "Error: Genre Doesn't Exist");
 		
         model.addAttribute("music", Musics);
         model.addAttribute("album", albums);
@@ -124,7 +127,9 @@ public class AdminController {
 			mEdit.setTrackNumber(editTrackNumber);
 			mEdit.setPrice(BigDecimal.valueOf(editSongPrice));
 			musicService.AddMusic(mEdit);
+			model.addAttribute("songStatusMessage", "Successfully Edited Song");
 		}
+		else model.addAttribute("songStatusMessage", "Error Editing Song");
 		
         model.addAttribute("music", Musics);
         model.addAttribute("album", albums);
@@ -162,7 +167,9 @@ public class AdminController {
 			mus.setPrice(BigDecimal.valueOf(addSongPrice));
 			musicService.AddMusic(mus);
 			Musics = musicService.GetAllMusic();
+			model.addAttribute("songStatusMessage", "Successfully Added Song");
 		}
+		else model.addAttribute("songStatusMessage", "Error Adding Song");
 		
         model.addAttribute("music", Musics);
         model.addAttribute("album", albums);
@@ -185,6 +192,7 @@ public class AdminController {
 			{
 				musicService.DeleteMusic(m);
 				Musics = musicService.GetAllMusic();
+				model.addAttribute("songStatusMessage", "Successfully Deleted Song");
 			}
 		}
 		
@@ -215,6 +223,7 @@ public class AdminController {
 				{
 					user.setActive(false);
 					//userService.saveUser(user);
+					model.addAttribute("userStatusMessage", "Successfully Edited User");
 				}
 			}
 		}
@@ -243,6 +252,7 @@ public class AdminController {
 				a.setReleaseDate(editAlbumDate);
 				a.setPrice(BigDecimal.valueOf(editAlbumPrice));	
 				albumService.save(a);
+				model.addAttribute("albumStatusMessage", "Successfully Edited Album");
 			}
 		}
 		
@@ -270,7 +280,9 @@ public class AdminController {
 			Album album = new Album(addAlbumName, gen, addArtistName, addAlbumDate, BigDecimal.valueOf(addAlbumPrice));
 			albumService.save(album);
 			albums = albumService.getAlbums();
+			model.addAttribute("albumStatusMessage", "Successfully Added Album");
 		}
+		else model.addAttribute("albumStatusMessage", "Error Adding Album");
 		
         model.addAttribute("music", Musics);
         model.addAttribute("album", albums);
@@ -294,7 +306,9 @@ public class AdminController {
 				
 				albumService.delete(a);
 				albums = albumService.getAlbums();
+				model.addAttribute("albumStatusMessage", "Successfully Deleted Album");
 			}
+			else model.addAttribute("albumStatusMessage", "Error Deleting Album");
 		}
 		
         model.addAttribute("music", Musics);

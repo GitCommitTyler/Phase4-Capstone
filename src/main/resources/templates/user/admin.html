@@ -60,6 +60,7 @@
 				        </tr>
 				        </tbody>
 				    </table>
+				    <h2 style="color: mediumseagreen"><span th:utext="${songStatusMessage}"></span></h2>
 				    <p class="lead">Edit Song</p>
 				    <form method="get" action="/editMusic" class="w-50 mx-auto">
 						<div class="input-group mb-2">
@@ -162,6 +163,7 @@
 				        </tr>
 				        </tbody>
 				    </table>
+				    <h2 style="color: mediumseagreen"><span th:utext="${albumStatusMessage}"></span></h2>
 				    <p class="lead">Edit Album</p>
 				    <form method="get" action="/editAlbum" class="w-50 mx-auto">
 						<div class="input-group mb-2">
@@ -263,8 +265,7 @@
 				        </tr>
 				        </tbody>
 				    </table>
-				    
-				    
+				    <h2 style="color: mediumseagreen"><span th:utext="${genreStatusMessage}"></span></h2>
 				    <p class="lead">Add Genre</p>
 				    <form method="get" action="/addGenre" class="w-50 mx-auto">
 						<div class="input-group mb-2">
@@ -315,6 +316,7 @@
 				        </tr>
 				        </tbody>
 				    </table>
+				    <h2 style="color: mediumseagreen"><span th:utext="${userStatusMessage}"></span></h2>
 				    <p class="lead">Edit User</p>
 				    <form method="get" action="/editUserActive" class="w-50 mx-auto">
 						<div class="input-group mb-2">
