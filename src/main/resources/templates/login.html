@@ -3,29 +3,38 @@
       xmlns:th="http://www.thymeleaf.org">
 
 <head>
-    <title>Spring Security Tutorial</title>
+    <title>Music Store</title>
     <link rel="stylesheet" type="text/css" th:href="@{/css/login.css}"/>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+	<script src="https://kit.fontawesome.com/801e5a8a65.js" crossorigin="anonymous"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </head>
 
-<body>
+<body style="background-color:aliceblue;">
 <form th:action="@{/registration}" method="get">
-    <button class="btn btn-md btn-warning btn-block" type="Submit">Go To Registration Page</button>
+    <button class="btn btn-md btn-dark btn-block" type="Submit">Go To Registration Page</button>
 </form>
 
 <div class="container">
-    <img th:src="@{/images/login.jpg}" class="img-responsive center-block" width="300" height="300" alt="Logo"/>
+    <img src="https://www.pngitem.com/pimgs/m/435-4354686_login-icons-png-transparent-png.png" class="rounded mx-auto d-block" width="300" height="359" alt="Logo"/>
     <form th:action="@{/login}" method="POST" class="form-signin">
         <h3 class="form-signin-heading" th:text="Welcome"></h3>
         <br/>
-
-        <input type="text" id="user_name" name="user_name" placeholder="User Name"
+		<div class="input-group mb-2">
+	        <div class="input-group-prepend">
+	          <div class="input-group-text"><span class="input-group-addon"><i class="fas fa-user"></i></span></div>
+	        </div>
+	    	<input type="text" id="user_name" name="user_name" placeholder="User Name"
                class="form-control"/> <br/>
-        <input type="password" th:placeholder="Password"
+	    </div>
+        <div class="input-group mb-2">
+	        <div class="input-group-prepend">
+	          <div class="input-group-text"><span class="input-group-addon"><i class="fas fa-lock"></i></span></div>
+	        </div>
+	    	<input type="password" th:placeholder="Password"
                id="password" name="password" class="form-control"/> <br/>
-
+	    </div>
         <div align="center" th:if="${param.error}">
             <p style="font-size: 20; color: #FF1C19;">User Name or Password invalid, please verify</p>
         </div>
