@@ -22,6 +22,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.example.Capstone.entities.Album;
 import com.example.Capstone.entities.Music;
 import com.example.Capstone.services.AlbumService;
+import com.example.Capstone.services.GenreService;
 import com.example.Capstone.services.MusicService;
 
 
@@ -29,6 +30,9 @@ import com.example.Capstone.services.MusicService;
 
 @Controller
 public class HomeController {
+	
+	@Autowired
+	private GenreService genreService;
 	
 	@Autowired
 	private AlbumService albumService;
@@ -49,12 +53,9 @@ public class HomeController {
 	@RequestMapping(value= "/user/index", method= RequestMethod.GET)
 	public String getNewMusic(Model model) {
 		List<Album> newAlbums = (List<Album>)albumService.getNewAlbums(getDateThreshhold());
-		double itemsPerSlide = 5;
-		double pages = Math.ceil(newAlbums.size()/itemsPerSlide);
-		logger.info(Double.toString(pages));
-		model.addAttribute("pages", pages);
-		model.addAttribute("itemsPerSlide", itemsPerSlide);
 		model.addAttribute("newAlbums", newAlbums);
+		model.addAttribute("genres", genreService.GetAllGenre());
+		model.addAttribute("artists", albumService.getArtists());
 		return "user/index";
 		
 	}
@@ -83,27 +84,26 @@ public class HomeController {
 		Iterable<Album> allAlbums = albumService.getAlbums();
 		List<Album> filteredAlbums = new ArrayList<Album>();
 		allAlbums.forEach(x->logger.info(x.getGenre().toString()));
-		switch(criterion) {
+		switch(criterion.toLowerCase()) {
 		case(""):
 			model.addAttribute("albumsToShow", allAlbums);
 			model.addAttribute("pagetitle", "All Albums");
 			break;
 		case("genre"):
-			model.addAttribute("pagetitle", value+" Albums");
-			allAlbums.forEach(x->{if(x.getGenre().toString().contains(value)) 
-				
-				filteredAlbums.add(x);
-			});
-			model.addAttribute("albumsToShow", filteredAlbums);
+			model.addAttribute("pagetitle", genreService.GetGenre(Long.parseLong(value)).getName().toString()+" Albums");
+			logger.info(value);
+
+			model.addAttribute("albumsToShow", albumService.getAlbumsByGenre(Long.parseLong(value)));
 			break;
 		case("artist"):
 			model.addAttribute("pagetitle", "Albums By "+value);
-			allAlbums.forEach(x->{if(x.getArtist().toString().contains(value)) 
+			allAlbums.forEach(x->{if(x.getArtist().toString().equals(value)) 
 			filteredAlbums.add(x);
 						});
+			model.addAttribute("albumsToShow",filteredAlbums);
 			break;
+			
 		}
-		filteredAlbums.forEach(x->logger.info(x.toString()));
 		return "user/allalbums";
 	}
 	
