@@ -58,6 +58,7 @@
 			      <th scope="col">#</th>
 			      <th scope="col">Title</th>
 			      <th scope="col">Price</th>
+               <th scope="col">Add</th>
 			    </tr>
 			  </thead>
 			  <tbody>
@@ -66,13 +67,12 @@
 				      <td scope="row" th:text="${status.index+1}"></td>
 				      <td th:text="${track.name}"></td>
 				      <td>
-				      	<button class="btn btn-dark" th:text="'Add to Cart  $' + ${track.price}"></button>
+				      	<button class="btn btn-dark" th:text="'Add to Cart  $' + ${track.price}" onclick="SaveItem(this)"></button>
 				      </td>
 				   	</tr>
 			   	</th:block>
 			  </tbody>
-			</table>
-			
-		
+			</table>	
 	</div>
+   <script src="/js/shoppingCart.js"></script>
 </body>

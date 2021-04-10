@@ -3,73 +3,51 @@
 <head>
     <title>Music Store</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link rel="stylesheet" href="/css/index.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-	<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns" crossorigin="anonymous"></script>
-		 
-	 <style>
-		.center {
-	  		text-align: center;
-	  	}
-	  	
-	  	
-       .row {
-        overflow-x: auto;
-        white-space: nowrap;
-        overflow-y:hidden;
-        }
-
-       .row > .col{
-        display: inline-block;
-        float: none;
-        padding-bottom:10px;
-        }
-	  	
-	  	
-	  	.card{
-	  		min-height:200px;
-	  		max-height: 200px;
-	  		height: 200px;
-	  		width: 200px;
-			min-width: 220px;
-			
-		}
-		.container-fluid{
-			padding-bottom:20px;
-	  	}
-	</style>
+	   <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns" crossorigin="anonymous"></script>
+	<script src="/js/index.js"></script>
+   <script src="/js/shoppingCart.js"></script>
+pstream/master
 </head>
 
-<body style="background-color: alice-blue;">
-
-	<nav class="navbar navbar-expand-lg fixed-top navbar-dark bg-dark">
+<div id="mySidebar" class="sidebar">
+   <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">×</a>
+   <h3>Shopping Cart</h3>
+ </div>
+<body style="background-color: alice-blue;" id="main">
+	<nav class="navbar navbar-expand-lg static-top navbar-dark bg-dark" >
 	  <div class="container-fluid">
 	    <a class="navbar-brand" href="/user/index">Music Website</a>
+       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+         <span class="navbar-toggler-icon"></span>
+       </button>
+       <div class="collapse navbar-collapse" id="navbarSupportedContent">
 	      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-	      	<li><a class="nav-link active" aria-current="page" href="/user/admin">Admin</a></li>
-	      	<li><a class="nav-link active" aria-current="page" href="/user/search_page">Search</a></li> 
-            <li><a class="nav-link active" aria-current="page" href="/user/account">Profile</a></li>
-	      	<li><a class="nav-link active" aria-current="page" href="/user/music_catalog">Music Catalog</a></li>
-	      	<li><a class="nav-link active" aria-current="page" href="/user/shopping_cart">Shopping Cart</a></li>
-	      	
-	      
-	      </ul>
-	      
+	      	<li class="nav-item"><a class="nav-link" aria-current="page" href="/user/admin">Admin</a></li>
+	      	<li class="nav-item"><a class="nav-link" aria-current="page" href="/user/search_page">Search</a></li> 
+            <li class="nav-item"><a class="nav-link" aria-current="page" href="/user/account">Profile</a></li>
+	      	<li class="nav-item"><a class="nav-link" aria-current="page" href="/user/music_catalog">Music Catalog</a></li>
+	      	<li class="nav-item"><a class="nav-link bi bi-cart openbtn" aria-current="page" onclick="openNav()">Cart</a></li> 
+	      </ul>	
+         </div>         
 	  </div>
+     <!--<button class="openbtn" onclick="openNav()">Shopping Cart</button>-->
 	</nav>
-
-
 	<br><br>
-
-	<div class="d-flex justify-content-center">
+	<div class="d-flex justify-content-center" >
 		<div class="w-75 p-3">
 			<!-- <div class="center"> -->
 				<div class="jumbotron" >
+
 					<p class="lead" style="text-justify;">New Releases</p>
+               <!--Holds All the Cards for albums-->
 					<div class="container-fluid" >
 					    <div class="row flex-nowrap justify-content-start">
+                     <!--Iterates through the list of albums-->
 					    	<th:block th:each="album, iStat: ${newAlbums}">
-
+                        <!--Indivual cards themselves-->
 					    		<div class="col-md-auto">
 					    			<div class="card" th:id="${album.id}" onclick=albumOnClick(id)>
 					    				<div class="card-body  text-wrap">
@@ -78,18 +56,18 @@
 											<a href="#" class="stretched-link" data-toggle="modal"  data-target="#albumModalCenter"></a>
 
 										</div>
-										
 									</div>
 								</div>
 								
-
 					    	</th:block>
+                      <!--Extra card to see all albums-->
 					    		<div class="card" style="min-width:200px;">
 							    	<div class="card-body text-wrap" style="min-width:200px">
 										<h5 class="card-title">See All Albums</h5>
 										<a href="./allalbums?criterion=&value=" class="stretched-link"></a>
 									</div>
 								</div>
+
 					    		<div class="modal fade " id="albumModalCenter" tabindex="-1" aria-hidden="true" role="dialog" aria-labelledby="albumModalCenterTitle" >
 								  <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
 								    <div class="modal-content">
@@ -97,6 +75,7 @@
 								        <div id="include"></div>
 								      </div>
 								      <div class="modal-footer">
+                                 <button type="button" class="btn btn-primary">Add Album to Cart</button>
 								        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
 								      </div>
 								    </div>
@@ -143,9 +122,7 @@
     					</div>
 					</div>	
 				</div>	
-<!-- 			</div> -->
-
-         
+<!-- 			</div> -->         
 		</div>
 	</div>
 
@@ -160,7 +137,7 @@
 				xhr.open("GET", "./album/"+clickedAlbum, true); 
 				xhr.send(); 
 				xhr.onreadystatechange=function(){
-					if(xhr.readyState==4 && xhr.status==200){ 
+					if(xhr.readyState==4 && xhr.status==200){
 						document.getElementById("include").innerHTML = xhr.responseText; 
 						} 
 				} 
