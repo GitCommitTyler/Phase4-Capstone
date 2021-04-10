@@ -53,11 +53,6 @@ public class HomeController {
 	@RequestMapping(value= "/user/index", method= RequestMethod.GET)
 	public String getNewMusic(Model model) {
 		List<Album> newAlbums = (List<Album>)albumService.getNewAlbums(getDateThreshhold());
-		double itemsPerSlide = 5;
-		double pages = Math.ceil(newAlbums.size()/itemsPerSlide);
-		logger.info(Double.toString(pages));
-		model.addAttribute("pages", pages);
-		model.addAttribute("itemsPerSlide", itemsPerSlide);
 		model.addAttribute("newAlbums", newAlbums);
 		model.addAttribute("genres", genreService.GetAllGenre());
 		return "user/index";
