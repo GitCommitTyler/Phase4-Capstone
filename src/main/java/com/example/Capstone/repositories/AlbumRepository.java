@@ -13,4 +13,7 @@ public interface AlbumRepository extends CrudRepository<Album, Integer>{
 	Iterable<Album> getAlbumsByReleaseDateGreaterThan(LocalDate Date);
 
 	Optional<Album> findById(long id);
+	
+	Iterable<Album> getAlbumsByGenreId(long id);
+	
 }

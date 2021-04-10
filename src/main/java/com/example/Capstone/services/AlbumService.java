@@ -40,7 +40,7 @@ public class AlbumService {
 		return albumRepository.getAlbumsByReleaseDateGreaterThan(pastDate);
 	}
 	
-	public Album getAlbumsByName(String albumName)
+	public Album getAlbum(String albumName)
 	{
 		Iterable<Album> allbums = getAlbums();
 		for(Album a : allbums)
@@ -49,6 +49,11 @@ public class AlbumService {
 				return a;
 		}
 		return null;
+	}
+	
+	public Iterable<Album> getAlbumsByGenre(Long id){
+		logger.info(albumRepository.getAlbumsByGenreId(id).toString());
+		return albumRepository.getAlbumsByGenreId(id);
 	}
 	
 	public void save(Album a)

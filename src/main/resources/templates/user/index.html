@@ -19,9 +19,10 @@
         overflow-y:hidden;
         }
 
-       .row > .col-sm-4 {
+       .row > .col{
         display: inline-block;
         float: none;
+        padding-bottom:10px;
         }
 	  	
 	  	
@@ -32,8 +33,9 @@
 	  		width: 200px;
 			min-width: 220px;
 			
-		
-
+		}
+		.container-fluid{
+			padding-bottom:20px;
 	  	}
 	</style>
 </head>
@@ -63,7 +65,7 @@
 		<div class="w-75 p-3">
 			<!-- <div class="center"> -->
 				<div class="jumbotron" >
-					<p class="lead" style="text-justify">New Releases</p>
+					<p class="lead" style="text-justify;">New Releases</p>
 					<div class="container-fluid" >
 					    <div class="row flex-nowrap" style="">
 					    	<th:block th:each="album, iStat: ${newAlbums}">
@@ -106,6 +108,25 @@
 								    </div>
 								  </div>
 								</div>
+    					</div>
+					</div>
+					<p class="lead" style="text-justify">Browse By Genre</p>
+					<div class="container-fluid" >
+					    <div class="row flex-nowrap" style="">
+					    	<th:block th:each="genre, iStat: ${genres}">
+
+					    		<div class="col">
+					    			<div class="card" th:id="'genre'+${genre.id}">
+					    				<div class="card-body  text-wrap">
+											<h5 class="card-title" th:text="${genre.Name}"></h5>
+
+											<a th:href="'./allalbums?criterion=genre&value='+${genre.Id}" class="stretched-link"></a>
+
+										</div>
+										
+									</div>
+								</div>
+					    	</th:block>
     					</div>
 					</div>	
 
