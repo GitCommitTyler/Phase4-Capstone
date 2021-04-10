@@ -55,6 +55,7 @@ public class HomeController {
 		List<Album> newAlbums = (List<Album>)albumService.getNewAlbums(getDateThreshhold());
 		model.addAttribute("newAlbums", newAlbums);
 		model.addAttribute("genres", genreService.GetAllGenre());
+		model.addAttribute("artists", albumService.getArtists());
 		return "user/index";
 		
 	}
@@ -96,12 +97,13 @@ public class HomeController {
 			break;
 		case("artist"):
 			model.addAttribute("pagetitle", "Albums By "+value);
-			allAlbums.forEach(x->{if(x.getArtist().toString().contains(value)) 
+			allAlbums.forEach(x->{if(x.getArtist().toString().equals(value)) 
 			filteredAlbums.add(x);
 						});
+			model.addAttribute("albumsToShow",filteredAlbums);
 			break;
+			
 		}
-		filteredAlbums.forEach(x->logger.info(x.toString()));
 		return "user/allalbums";
 	}
 	

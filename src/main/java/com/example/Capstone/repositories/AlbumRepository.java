@@ -14,6 +14,10 @@ public interface AlbumRepository extends CrudRepository<Album, Integer>{
 
 	Optional<Album> findById(long id);
 	
+	
 	Iterable<Album> getAlbumsByGenreId(long id);
+	
+	@Query("select distinct artist from Album")
+	Iterable<String> getUniqueArtists();
 	
 }

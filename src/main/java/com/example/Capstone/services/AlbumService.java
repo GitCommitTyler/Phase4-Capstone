@@ -36,6 +36,7 @@ public class AlbumService {
 			return album.get();
 	}
 	
+	
 	public Iterable<Album> getNewAlbums(LocalDate pastDate){
 		return albumRepository.getAlbumsByReleaseDateGreaterThan(pastDate);
 	}
@@ -54,6 +55,12 @@ public class AlbumService {
 	public Iterable<Album> getAlbumsByGenre(Long id){
 		logger.info(albumRepository.getAlbumsByGenreId(id).toString());
 		return albumRepository.getAlbumsByGenreId(id);
+	}
+	
+	
+	public Iterable<String> getArtists(){
+		logger.info(albumRepository.getUniqueArtists().toString());
+		return albumRepository.getUniqueArtists();
 	}
 	
 	public void save(Album a)
