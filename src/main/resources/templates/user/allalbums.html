@@ -54,6 +54,7 @@
 				    <img src="..." class="card-img-top" alt="...">
 				    <div class="card-body">
 				      <h5 class="card-title" th:text="${album.Name}"></h5>
+				      <p class="card-text" th:text="${album.artist}"></p>
 				      <a href="#" class="stretched-link" data-toggle="modal"  data-target="#albumModalCenter"></a>
 				    </div>
 				  </div>
@@ -63,13 +64,8 @@
 		</div>
 	</div>
 	<div class="modal fade" id="albumModalCenter" tabindex="-1" aria-hidden="true" role="dialog" aria-labelledby="albumModalCenterTitle" >
-	  <div class="modal-dialog modal-dialog-centered" role="document">
+	  <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
 	    <div class="modal-content">
-	      <div class="modal-header">
-	        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-	          <span aria-hidden="true">&times;</span>
-	        </button>
-	      </div>
 	      <div class="modal-body">
 	        <div id="include"></div>
 	      </div>

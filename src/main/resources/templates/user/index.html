@@ -9,6 +9,7 @@
 	   <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns" crossorigin="anonymous"></script>
 	<script src="/js/index.js"></script>
    <script src="/js/shoppingCart.js"></script>
+pstream/master
 </head>
 
 <div id="mySidebar" class="sidebar">
@@ -39,14 +40,15 @@
 		<div class="w-75 p-3">
 			<!-- <div class="center"> -->
 				<div class="jumbotron" >
-					<p class="lead" style="text-justify">New Releases</p>
+
+					<p class="lead" style="text-justify;">New Releases</p>
                <!--Holds All the Cards for albums-->
 					<div class="container-fluid" >
-					    <div class="row flex-nowrap" style="">
+					    <div class="row flex-nowrap justify-content-start">
                      <!--Iterates through the list of albums-->
 					    	<th:block th:each="album, iStat: ${newAlbums}">
                         <!--Indivual cards themselves-->
-					    		<div class="col">
+					    		<div class="col-md-auto">
 					    			<div class="card" th:id="${album.id}" onclick=albumOnClick(id)>
 					    				<div class="card-body  text-wrap">
 											<h5 class="card-title" th:text="${album.Name}"></h5>
@@ -65,17 +67,10 @@
 										<a href="./allalbums?criterion=&value=" class="stretched-link"></a>
 									</div>
 								</div>
-                        <!--Displays the modal for the individual album-->
-					    		<div class="modal fade" id="albumModalCenter" tabindex="-1" aria-hidden="true" role="dialog" aria-labelledby="albumModalCenterTitle" >
-								  <div class="modal-dialog modal-dialog-centered" role="document">
+
+					    		<div class="modal fade " id="albumModalCenter" tabindex="-1" aria-hidden="true" role="dialog" aria-labelledby="albumModalCenterTitle" >
+								  <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
 								    <div class="modal-content">
-								      <div class="modal-header">
-								        <h5 class="modal-title" id="albumModalLongTitle">Album</h5>
-								        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-								          <span aria-hidden="true">&times;</span>
-								        </button>
-								      </div>
-                              <!--Table of songs from album-->
 								      <div class="modal-body">
 								        <div id="include"></div>
 								      </div>
@@ -87,8 +82,45 @@
 								  </div>
 								</div>
     					</div>
-					</div>	
+					</div>
+					<p class="lead" style="text-justify">Browse By Genre</p>
+					<div class="container-fluid" >
+					    <div class="row flex-nowrap justify-content-start" style="">
+					    	<th:block th:each="genre, iStat: ${genres}">
 
+					    		<div class="col-md-auto">
+					    			<div class="card" th:id="'genre'+${genre.id}">
+					    				<div class="card-body  text-wrap">
+											<h5 class="card-title" th:text="${genre.Name}"></h5>
+
+											<a th:href="'./allalbums?criterion=genre&value='+${genre.Id}" class="stretched-link"></a>
+
+										</div>
+										
+									</div>
+								</div>
+					    	</th:block>
+    					</div>
+					</div>	
+					<p class="lead" style="text-justify">Browse By Artist</p>
+					<div class="container-fluid" >
+					    <div class="row flex-nowrap justify-content-start" style="">
+					    	<th:block th:each="artist, iStat: ${artists}">
+
+					    		<div class="col-md-auto">
+					    			<div class="card" th:id="'artist'+${iStat}">
+					    				<div class="card-body  text-wrap">
+											<h5 class="card-title" th:text="${artist}"></h5>
+
+											<a th:href="'./allalbums?criterion=artist&value='+${artist}" class="stretched-link"></a>
+
+										</div>
+										
+									</div>
+								</div>
+					    	</th:block>
+    					</div>
+					</div>	
 				</div>	
 <!-- 			</div> -->         
 		</div>

@@ -2,17 +2,21 @@
 	text-align: center;
 }
 	  	
-	  	
+ .container-fluid{
+	padding-bottom:20px;
+}	
 .row {
     overflow-x: auto;
     white-space: nowrap;
     overflow-y:hidden;
 }
 
-.row > .col-sm-4 {
-    display: inline-block;
-    float: none;
-}
+.row > .col{
+        display: inline-block;
+        float: none;
+        padding-bottom:10px;
+        }
+	  	
 	  	
 .card{
 	 min-height:200px;
