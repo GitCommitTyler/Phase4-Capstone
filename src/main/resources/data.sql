@@ -53,3 +53,6 @@ insert into `music` (id, name, price, track_number, album_id, genre_id) VALUES (
 
 insert into `users` (user_id,active,email,last_name,name,password,user_name) VALUES(1,1,"j@g.com","j","j","$2a$10$YMUUQKKVXjGxa4fAz0GQK.bbO/XAV6EROTAKFgNaAzmZ27M5D1A7W","username");
 INSERT INTO `user_role`(user_id,role_id) VALUES(1,2);
+
+insert into `users` (user_id,active,email,last_name,name,password,user_name) VALUES(2,1,"a@g.com","a","a","$2a$10$YMUUQKKVXjGxa4fAz0GQK.bbO/XAV6EROTAKFgNaAzmZ27M5D1A7W","admin");
+INSERT INTO `user_role`(user_id,role_id) VALUES(2,2);

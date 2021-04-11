@@ -7,9 +7,8 @@
     <link rel="stylesheet" href="/css/index.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-	   <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns" crossorigin="anonymous"></script>
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns" crossorigin="anonymous"></script>
 	<script src="/js/index.js"></script>
-   <script src="/js/shoppingCart.js"></script>
 	<style>
 		.center {
 	  		text-align: center;
@@ -17,20 +16,27 @@
 	  	
 	</style>
 </head>
+
 <div id="mySidebar" class="sidebar">
    <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">×</a>
    <h3>Shopping Cart</h3>
+   <div class="cart" id="cart">
+   </div>
+   <div class="total" id="total">
+   </div>
 </div>
-<body style="background-color:aliceblue;">
+
+<body style="background-color:aliceblue;" id="main">
 	<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
 	  <div class="container-fluid">
 	    <a class="navbar-brand" href="/user/index">Music Website</a>
 	      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-	      	<li class="nav-item"><a class="nav-link" aria-current="page" href="/user/admin">Admin</a></li>
+	      	
 	      	<li class="nav-item"><a class="nav-link" aria-current="page" href="/user/search_page">Search</a></li> 
             <li class="nav-item"><a class="nav-link" aria-current="page" href="/user/account">Profile</a></li>
 	      	
 	      	<li class="nav-item"><a class="nav-link bi bi-cart openbtn" aria-current="page" onclick="openNav()">Cart</a></li>
+	      	<li class="nav-item"><a class="nav-link" aria-current="page" onclick="clearCart()"href="/logout">Logout</a></li>
 	      </ul>
 	      
 	  </div>
