@@ -32,6 +32,13 @@
 
 </head>
 <body>
+	<script>
+	function printData(id){
+		
+		var attr = document.getElementById(id);
+		console.log(attr.dataset.price);
+	}
+	</script>
 	<div class="container">
 		<div class="row justify-content-end">
 			<div class="col">
@@ -66,7 +73,7 @@
 				      <td scope="row" th:text="${status.index+1}"></td>
 				      <td th:text="${track.name}"></td>
 				      <td>
-				      	<button class="btn btn-dark" th:text="'Add to Cart  $' + ${track.price}"></button>
+				      	<button class="btn btn-dark" th:id="${track.name}" th:data-price="${track.price}" th:text="'Add to Cart  $' + ${track.price}" onclick=printData(id)></button>
 				      </td>
 				   	</tr>
 			   	</th:block>
