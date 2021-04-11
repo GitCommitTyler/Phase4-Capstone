@@ -21,7 +21,14 @@ public class MusicService {
     {
         return MusicRepository.findAll();
     }
-
+    public Music GetMusicByTrackName(String trackName){
+    	for(Music song:MusicRepository.findAll()) {
+    		if(song.getName().equals(trackName)) {
+    			return (song);
+    		}
+    	}
+    	return null;
+    }
 
     public Iterable<Music> SearchKeywordMusic(String keyword)
     {

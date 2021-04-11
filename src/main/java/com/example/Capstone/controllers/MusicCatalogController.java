@@ -21,6 +21,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.ui.Model;
@@ -97,6 +98,11 @@ public class MusicCatalogController {
         model.addAttribute("genre", Genre);
     	return "user/search";
     }
- 
+
+	
+	//@GetMapping(value="/user/music/{trackName}")
+	//public Music findTrack(@PathVariable(value="trackName") String trackName) {
+	//	return musicService.GetMusicByTrackName(trackName);
+	//}
 
 }

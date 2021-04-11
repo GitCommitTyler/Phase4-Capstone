@@ -12,10 +12,10 @@
 }
 
 .row > .col{
-        display: inline-block;
-        float: none;
-        padding-bottom:10px;
-        }
+   display: inline-block;
+   float: none;
+   padding-bottom:10px;
+}
 	  	
 	  	
 .card{

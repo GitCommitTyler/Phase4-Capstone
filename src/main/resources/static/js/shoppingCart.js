@@ -27,14 +27,23 @@ function doShowAll() {
         alert('Cannot save shopping list as your browser does not support HTML 5');
     }
 }
-function SaveItem(element) {
-   var rowId=element.parentNode.parentNode.parentNode.firstChild.innerHTML;
-   console.log(element.parentNode.parentNode.firstChild);
-   console.log(rowId);
-    //var name = document.forms.ShoppingList.name.value;
-    //var data = document.forms.ShoppingList.data.value;
-    //localStorage.setItem(name, data);
-    //doShowAll();
+function SaveTrack(id) {
+   var track =document.querySelector("#"+id);
+   var trackprice =track.dataset.price;
+   var trackname=track.dataset.track;
+   var newid=id.substring(2);
+   var info = localStorage.getItem("tracks");
+   var info={
+      tracks:[
+         {
+            name:trackname,
+            price:trackprice,
+            trackid:newid
+         }
+   ]};
+   localStorage.setItem("tracks",info);
+   console.log(trackname);
+   console.log(price);
 
 }
 //Change an existing key-value in HTML5 storage.
