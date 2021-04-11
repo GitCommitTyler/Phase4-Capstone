@@ -38,12 +38,12 @@
 				<div class="jumbotron" >
 					<p class="lead" style="text-justify;">New Releases</p>
                <!--Holds All the Cards for albums-->
-					<div class="container-fluid" >
+					<div class="container-fluid body-row" >
 					    <div class="row flex-nowrap justify-content-start">
                      <!--Iterates through the list of albums-->
 					    	<th:block th:each="album, iStat: ${newAlbums}">
                         <!--Indivual cards themselves-->
-					    		<div class="col-md-auto">
+					    		<div class="col-md-auto d-flex align-items-end">
 					    			<div class="card" th:id="${album.id}" onclick=albumOnClick(id)>
 					    				<div class="card-body  text-wrap">
 											<h5 class="card-title" th:text="${album.Name}"></h5>
@@ -77,8 +77,8 @@
 								</div>
     					</div>
 					</div>
-					<p class="lead" style="text-justify">Browse By Genre</p>
-					<div class="container-fluid" >
+					<p class="lead" style="text-justify;">Browse By Genre</p>
+					<div class="container-fluid body-row" >
 					    <div class="row flex-nowrap justify-content-start" style="">
 					    	<th:block th:each="genre, iStat: ${genres}">
 
@@ -96,8 +96,8 @@
 					    	</th:block>
     					</div>
 					</div>	
-					<p class="lead" style="text-justify">Browse By Artist</p>
-					<div class="container-fluid" >
+					<p class="lead" style="text-justify;">Browse By Artist</p>
+					<div class="container-fluid body-row" >
 					    <div class="row flex-nowrap justify-content-start" style="">
 					    	<th:block th:each="artist, iStat: ${artists}">
 

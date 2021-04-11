@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" lang="en">
 <head>
-
 <title>Albums</title>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <script src="https://kit.fontawesome.com/801e5a8a65.js" crossorigin="anonymous"></script>
@@ -10,7 +9,6 @@
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns" crossorigin="anonymous"></script>
 	<script src="/js/index.js"></script>
-
 <style>
 		.center {
 	  		text-align: center;
@@ -27,23 +25,31 @@
 </style>
 
 </head>
+<div id="mySidebar" class="sidebar">
+   <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">×</a>
+   <h3>Shopping Cart</h3>
+   <div class="cart" id="cart">
+   </div>
+   <div class="total" id="total">
+   </div>
+</div>
+<body id="main" style="background-color:aliceblue;">
+	
 
-<body style="background-color:aliceblue;">
-	<div class="row" style="height:50px;">
-	<nav class="navbar navbar-expand-lg fixed-top navbar-dark bg-dark">
+	<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
 	  <div class="container-fluid">
 	    <a class="navbar-brand" href="/user/index">Music Website</a>
 	      <ul class="navbar-nav me-auto mb-2 mb-lg-0">	      	
             <li class="nav-item"><a class="nav-link" aria-current="page" href="/user/search_page">Search</a></li> 
             <li class="nav-item"><a class="nav-link" aria-current="page" href="/user/account">Profile</a></li>
-
+			<li class="nav-item"><a class="nav-link bi bi-cart openbtn" aria-current="page" onclick="openNav()">Cart</a></li>
 	      	<li class="nav-item"><a class="nav-link" aria-current="page" onclick="clearCart()"href="/logout">Logout</a></li>
 	      	      	  
 	      </ul>
 	      
 	  </div>
 	</nav>
-	</div>
+
 	
 	<br><br>
 	<div class="center">
