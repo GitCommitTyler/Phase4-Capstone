@@ -66,8 +66,12 @@ body {
 .openbtn {
   cursor: pointer;
 }
-
-
+h3{
+	color:white;
+}
+.total{
+	color:white;
+}
 #main {
   transition: margin-left .5s;
 }
