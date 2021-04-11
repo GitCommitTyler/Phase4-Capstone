@@ -3,9 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <title>Shopping Cart</title>
-    <link rel="stylesheet" href="styles.css"></link>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-    <script src="https://kit.fontawesome.com/801e5a8a65.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="/css/index.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+	   <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns" crossorigin="anonymous"></script>
+	<script src="/js/index.js"></script>
+   <script src="/js/shoppingCart.js"></script>
     <style>
 		.center {
 	  		text-align: center;
@@ -13,14 +16,20 @@
 	  	
 	</style>
 </head>
+<div id="mySidebar" class="sidebar">
+   <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">×</a>
+   <h3>Shopping Cart</h3>
+</div>
 <body style="background-color:aliceblue;">
-	<nav class="navbar navbar-expand-lg fixed-top navbar-dark bg-dark">
+	<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
 	  <div class="container-fluid">
 	    <a class="navbar-brand" href="/user/index">Music Website</a>
 	      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-	      	<li><a class="nav-link active" aria-current="page" href="/user/search_page">Search</a></li> 
-	      	<li><a class="nav-link active" aria-current="page" href="/user/music_catalog">Music Catalog</a></li>
-	      	<li><a class="nav-link active" aria-current="page" href="/user/shopping_cart">Shopping Cart</a></li>
+	      	<li class="nav-item"><a class="nav-link" aria-current="page" href="/user/admin">Admin</a></li>
+	      	<li class="nav-item"><a class="nav-link" aria-current="page" href="/user/search_page">Search</a></li> 
+            <li class="nav-item"><a class="nav-link" aria-current="page" href="/user/account">Profile</a></li>
+	      	
+	      	<li class="nav-item"><a class="nav-link bi bi-cart openbtn" aria-current="page" onclick="openNav()">Cart</a></li>
 	      </ul>
 	      
 	  </div>
@@ -31,8 +40,7 @@
 			<div class="center">
     		<h1 class="display-3">Administration Page</h1>
 				<div class="jumbotron">
-					<p class="lead">Songs:</p>
-				    
+				    <h1 class="display-4">Songs:</h1>
 				    <table class="table table-info table-striped table-bordered table-hover mx-auto">
 				        <thead>
 				            <tr>
@@ -55,7 +63,8 @@
 				        </tr>
 				        </tbody>
 				    </table>
-				    
+				    <h2 style="color: mediumseagreen"><span th:utext="${songStatusMessage}"></span></h2>
+				    <p class="lead">Edit Song</p>
 				    <form method="get" action="/editMusic" class="w-50 mx-auto">
 						<div class="input-group mb-2">
 					        <div class="input-group-prepend">
@@ -84,7 +93,7 @@
 					    <input type="submit" value="Edit" class="btn btn-info"/>
 				    </form>
 				    <br>
-				    
+				    <p class="lead">Add Song</p>
 				    <form method="get" action="/addMusic" class="w-50 mx-auto">
 						<div class="input-group mb-2">
 					        <div class="input-group-prepend">
@@ -121,7 +130,7 @@
 					    <input type="submit" value="Add" class="btn btn-info"/>
 				    </form>
 				    <br>
-				    
+				    <p class="lead">Delete Song</p>
 				    <form method="get" action="/deleteSong" class="w-50 mx-auto">
 						<div class="input-group mb-2">
 					        <div class="input-group-prepend">
@@ -133,7 +142,7 @@
 					</form>
 					<br>
 				    
-				    <p class="lead">Albums:</p>
+				    <h1 class="display-4">Albums:</h1>
 				    
 				    <table class="table table-info table-striped table-bordered table-hover mx-auto">
 				        <thead>
@@ -157,6 +166,8 @@
 				        </tr>
 				        </tbody>
 				    </table>
+				    <h2 style="color: mediumseagreen"><span th:utext="${albumStatusMessage}"></span></h2>
+				    <p class="lead">Edit Album</p>
 				    <form method="get" action="/editAlbum" class="w-50 mx-auto">
 						<div class="input-group mb-2">
 					        <div class="input-group-prepend">
@@ -185,7 +196,7 @@
 					    <input type="submit" value="Edit" class="btn btn-info"/>
 				    </form>
 				    <br>
-				    
+				    <p class="lead">Add Album</p>
 				    <form method="get" action="/addAlbum" class="w-50 mx-auto">
 						<div class="input-group mb-2">
 					        <div class="input-group-prepend">
@@ -228,6 +239,7 @@
 					    <input type="submit" value="Add" class="btn btn-info"/>
 				    </form>
 				    <br>
+				    <p class="lead">Delete Album</p>
 				    <form method="get" action="/deleteAlbum" class="w-50 mx-auto">
 						<div class="input-group mb-2">
 					        <div class="input-group-prepend">
@@ -240,7 +252,7 @@
 					<br>
 				    <br>
 				    
-				    <p class="lead">Genres:</p>
+				    <h1 class="display-4">Genres:</h1>
 				    
 				    <table class="table table-info table-striped table-bordered table-hover mx-auto">
 				        <thead>
@@ -256,8 +268,8 @@
 				        </tr>
 				        </tbody>
 				    </table>
-				    
-				    <br>
+				    <h2 style="color: mediumseagreen"><span th:utext="${genreStatusMessage}"></span></h2>
+				    <p class="lead">Add Genre</p>
 				    <form method="get" action="/addGenre" class="w-50 mx-auto">
 						<div class="input-group mb-2">
 					        <div class="input-group-prepend">
@@ -268,6 +280,7 @@
 					    	
 					    </div>
 				    </form>
+				    <p class="lead">Delete Genre</p>
 				    <form method="get" action="/deleteGenre" class="w-50 mx-auto">
 						<div class="input-group mb-2">
 					        <div class="input-group-prepend">
@@ -280,7 +293,7 @@
 				    </form>
 				    <br>
 				    
-				    <p class="lead">Users:</p>
+				    <h1 class="display-4">Users:</h1>
 				    
 				    <table class="table table-info table-striped table-bordered table-hover mx-auto">
 				        <thead>
@@ -306,7 +319,8 @@
 				        </tr>
 				        </tbody>
 				    </table>
-				    
+				    <h2 style="color: mediumseagreen"><span th:utext="${userStatusMessage}"></span></h2>
+				    <p class="lead">Edit User</p>
 				    <form method="get" action="/editUserActive" class="w-50 mx-auto">
 						<div class="input-group mb-2">
 					        <div class="input-group-prepend">
@@ -320,6 +334,9 @@
 			</div>
 		</div>
 	</div>
-
+<script src="https://kit.fontawesome.com/801e5a8a65.js" crossorigin="anonymous"></script>
+   <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 </body>
 </html>

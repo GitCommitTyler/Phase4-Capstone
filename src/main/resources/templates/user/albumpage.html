@@ -31,14 +31,8 @@
 
 
 </head>
-<body>
-	<script>
-	function printData(id){
-		
-		var attr = document.getElementById(id);
-		console.log(attr.dataset.price);
-	}
-	</script>
+<body style="background-color:aliceblue;">
+
 	<div class="container">
 		<div class="row justify-content-end">
 			<div class="col">
@@ -65,6 +59,7 @@
 			      <th scope="col">#</th>
 			      <th scope="col">Title</th>
 			      <th scope="col">Price</th>
+               <th scope="col">Add</th>
 			    </tr>
 			  </thead>
 			  <tbody>
@@ -73,13 +68,12 @@
 				      <td scope="row" th:text="${status.index+1}"></td>
 				      <td th:text="${track.name}"></td>
 				      <td>
-				      	<button class="btn btn-dark" th:id="${track.name}" th:data-price="${track.price}" th:text="'Add to Cart  $' + ${track.price}" onclick=printData(id)></button>
+				      	<button class="btn btn-dark" th:text="'Add to Cart  $' + ${track.price}" onclick="SaveItem(this)"></button>
 				      </td>
 				   	</tr>
 			   	</th:block>
 			  </tbody>
-			</table>
-			
-		
+			</table>	
 	</div>
+   <script src="/js/shoppingCart.js"></script>
 </body>
