@@ -166,20 +166,6 @@ function openNav() {
    } 
    console.log(trackid);
    console.log(albumid);
-   window.location.href="http://localhost:8090/user/checkout";
-   $.ajax({
-      type : "POST",
-      url : "/checkout",
-      data : {
-          albums:albumid,
-          tracks:trackid
-      },
-      success : function(response) {
-         console.log("POST REQUEST SUCCESS");
-         window.location="/user/checkout"
-      },
-      error : function(e) {
-         ('Error: ' + e);
-      }
-  }); 
+
+   window.location.href =  "./checkout?tracks="+trackid+"&albums="+albumid;
  }
