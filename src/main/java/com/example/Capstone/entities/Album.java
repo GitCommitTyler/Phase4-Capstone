@@ -36,6 +36,8 @@ public class Album {
     private Date releaseDate;
 
     private BigDecimal price;
+    
+    private String imageURL;
 
     public Album() {}
     
@@ -94,6 +96,12 @@ public class Album {
 	public void setPrice(BigDecimal price) {
 		this.price = price;
 	}
-
-
+	
+	public String getImageURL() {
+		return imageURL;
+	}
+	
+	public void setImageURL(String url) {
+		this.imageURL = url;
+	}
 }
