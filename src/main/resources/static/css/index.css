@@ -37,8 +37,19 @@ img{
 	
 }
 
+.card-img-overlay-show{
+	visibility:visible;
+    font-weight:900;
+    color:white;
+}
+
+.overlay-dark-show{
+	visibility:visible;
+    background-color: rgba(0, 0, 0, 0.35);
+}
+
 .card-img-overlay{
-    visibility: hidden;
+    /*  *//* visibility: hidden; */
     font-weight:900;
     color:white;
 }

@@ -63,6 +63,13 @@ public class AlbumService {
 		return albumRepository.getUniqueArtists();
 	}
 	
+	public Iterable<Album> getAlbumByArtistDistinct(){
+		
+		Iterable<Album> albums = albumRepository.getAlbumsGroupByArtist();
+		logger.info(albums.toString());
+		return albums;
+	}
+	
 	public void save(Album a)
 	{
 		albumRepository.save(a);

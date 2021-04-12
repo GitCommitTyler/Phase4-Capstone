@@ -35,4 +35,13 @@ public class OrdersService {
 	public void deleteOrder(int id) {
 		ordersRepository.deleteById(id);
 	}
+
+	public Iterable<Orders> findAllOrders() {
+		// TODO Auto-generated method stub
+		return ordersRepository.findAll();
+	}
+	public void save(Orders o)
+	{
+		ordersRepository.save(o);
+	}
 }

@@ -25,10 +25,12 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.example.Capstone.entities.Album;
 import com.example.Capstone.entities.Genre;
 import com.example.Capstone.entities.Music;
+import com.example.Capstone.entities.Orders;
 import com.example.Capstone.entities.User;
 import com.example.Capstone.services.AlbumService;
 import com.example.Capstone.services.GenreService;
 import com.example.Capstone.services.MusicService;
+import com.example.Capstone.services.OrdersService;
 import com.example.Capstone.services.UserService;
 
 
@@ -47,6 +49,8 @@ public class HomeController {
 	private MusicService musicService;
 	@Autowired
 	private UserService userService;
+	@Autowired
+	private OrdersService orderService;
 	
 	Logger logger = LoggerFactory.getLogger(HomeController.class);
 	
@@ -65,21 +69,31 @@ public class HomeController {
 		if(user.getUserName().equals("admin") && user.getPassword().equals("$2a$10$YMUUQKKVXjGxa4fAz0GQK.bbO/XAV6EROTAKFgNaAzmZ27M5D1A7W"))
 		{
 			Iterable<Music> Musics = musicService.GetAllMusic();
-			Iterable<Album> albums = albumService.getAlbums();
 			Iterable<Genre> genres = genreService.GetAllGenre();
 			Iterable<User> users = userService.findAllUsers();
+
+			Iterable<Album> albums = albumService.getAlbums();
+
+			Iterable<Orders> orders = orderService.findAllOrders();
+
 			
+			model.addAttribute("album", albums);
 	        model.addAttribute("music", Musics);
-	        model.addAttribute("album", albums);
 	        model.addAttribute("genre", genres);
 	        model.addAttribute("user", users);
+	        model.addAttribute("order", orders);
 			return "/user/admin";
 		}
+		Iterable<Album> albums = albumService.getAlbums();
 		List<Album> newAlbums = (List<Album>)albumService.getNewAlbums(getDateThreshhold());
+		Iterable<Album> albumsByArtist = albumService.getAlbumByArtistDistinct();
+		model.addAttribute("albumsByArtist", albumsByArtist);
+		model.addAttribute("albums", albums);
 		model.addAttribute("newAlbums", newAlbums);
 		model.addAttribute("genres", genreService.GetAllGenre());
 		model.addAttribute("artists", albumService.getArtists());
 		model.addAttribute("uId",user.getId());
+		logger.info(model.getAttribute("genres").toString());
 		return "user/index";
 		
 	}
@@ -107,7 +121,6 @@ public class HomeController {
 	public String showAllAlbums(@RequestParam("criterion")String criterion, @RequestParam("value")String value, Model model) {
 		Iterable<Album> allAlbums = albumService.getAlbums();
 		List<Album> filteredAlbums = new ArrayList<Album>();
-		allAlbums.forEach(x->logger.info(x.getGenre().toString()));
 		switch(criterion.toLowerCase()) {
 		case(""):
 			model.addAttribute("albumsToShow", allAlbums);

@@ -15,6 +15,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import org.hibernate.annotations.GenericGenerator;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import com.example.Capstone.entities.User;
@@ -24,9 +25,15 @@ import com.example.Capstone.entities.User;
 public class Orders {
 	
 	@Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "order_id")
-	Integer id;
+	@GeneratedValue(
+	    strategy= GenerationType.AUTO,
+	    generator="native"
+	)
+	@GenericGenerator(
+	    name = "native",
+	    strategy = "native"
+	)
+	private Integer id;
 	
 	@DateTimeFormat(pattern="dd/MM/yyyy")
 	@Temporal(TemporalType.DATE)
@@ -35,6 +42,8 @@ public class Orders {
 	@ManyToOne
 	@JoinColumn(name="user_id", nullable=true)
 	private User user;
+	
+	private String status;
 	
 	public Orders(Date orderDate, User user) {
 		super();
@@ -72,5 +81,13 @@ public class Orders {
 
 	public void setUser(User user) {
 		this.user = user;
+	}
+
+	public String getStatus() {
+		return status;
+	}
+
+	public void setStatus(String status) {
+		this.status = status;
 	}
 }

@@ -10,11 +10,11 @@ CHANGE COLUMN `id` `id` BIGINT NOT NULL AUTO_INCREMENT ;
 
 
 
-insert into `genre` (id, name) VALUES (1, "Country");
-insert into `genre` (id, name) VALUES (2, "Pop");
-insert into `genre` (id, name) VALUES (3, "Rock");
-insert into `genre` (id, name) VALUES (4, "Electronic");
-insert into `genre` (id, name) VALUES (5, "Hip Hop");
+insert into `genre` (id, name, imageurl) VALUES (1, "Country", "https://hclcapstoneimages.s3.us-east-2.amazonaws.com/capstoneimages/Country.jpg");
+insert into `genre` (id, name, imageurl) VALUES (2, "Pop", "https://hclcapstoneimages.s3.us-east-2.amazonaws.com/capstoneimages/Pop.jpg");
+insert into `genre` (id, name, imageurl) VALUES (3, "Rock", "https://hclcapstoneimages.s3.us-east-2.amazonaws.com/capstoneimages/Rock.jpg");
+insert into `genre` (id, name, imageurl) VALUES (4, "Electronic", "https://hclcapstoneimages.s3.us-east-2.amazonaws.com/capstoneimages/Electronic.jpg");
+insert into `genre` (id, name, imageurl) VALUES (5, "Hip Hop", "https://hclcapstoneimages.s3.us-east-2.amazonaws.com/capstoneimages/HipHop.jpg");
 
 
 insert into `album` (id, name, artist, imageurl, price, release_date, genre_id) VALUES (null, "Going With My Tractor", "Tim McGraw", "https://hclcapstoneimages.s3.us-east-2.amazonaws.com/capstoneimages/Tractor.jpg", 9.99, '1995-09-19', 1);
@@ -61,3 +61,4 @@ INSERT INTO `user_role`(user_id,role_id) VALUES(2,2);
 
 insert into `users` (user_id,active,email,last_name,name,password,user_name) VALUES(3,1,"b@g.com","b","b","$2a$10$YMUUQKKVXjGxa4fAz0GQK.bbO/XAV6EROTAKFgNaAzmZ27M5D1A7W","test123");
 INSERT INTO `user_role`(user_id,role_id) VALUES(3,1);
+
