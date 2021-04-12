@@ -11,15 +11,19 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </head>
 
-<body style="background-color:aliceblue;">
-<form th:action="@{/registration}" method="get">
-    <button class="btn btn-md btn-dark btn-block" type="Submit">Go To Registration Page</button>
+<body style="background-image:url('https://hclcapstoneimages.s3.us-east-2.amazonaws.com/capstoneimages/loginbackground.jpg'); min-height:970px;">
+<form th:action="@{/registration}" method="get" id="registerform">
+    
 </form>
-
-<div class="container">
-    <img src="https://www.pngitem.com/pimgs/m/435-4354686_login-icons-png-transparent-png.png" class="rounded mx-auto d-block" width="300" height="359" alt="Logo"/>
+	
+	<div class="d-flex flex-row justify-content-center align-items-center">
+	<div class="p-5">
+    <div class="d-flex flex-column align-items-center">
+    
+    <div class="jumbotron text-wrap">
+   
     <form th:action="@{/login}" method="POST" class="form-signin">
-        <h3 class="form-signin-heading" th:text="Welcome"></h3>
+     <h1 class="display-4">Welcome to Music Store</h1>
         <br/>
 		<div class="input-group mb-2">
 	        <div class="input-group-prepend">
@@ -38,9 +42,13 @@
         <div align="center" th:if="${param.error}">
             <p style="font-size: 20; color: #FF1C19;">User Name or Password invalid, please verify</p>
         </div>
-        <button class="btn btn-lg btn-primary btn-block" name="Submit" value="Login" type="Submit"
+        <button class="btn btn-md btn-primary btn-block" name="Submit" value="Login" type="Submit"
                 th:text="Login"></button>
+        <button class="btn btn-md btn-dark btn-block" form="registerform" type="Submit">Register</button>
     </form>
-</div>
+    </div>	
+    </div>
+    </div>
+	</div>
 </body>
 </html>

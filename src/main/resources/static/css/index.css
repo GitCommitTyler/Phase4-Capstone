@@ -13,6 +13,7 @@
 }
 .body-row{
 	box-shadow: inset 0 .5em 0.5em rgba(0, 0, 0, 0.50);
+	
 }
 
 .row > .col{
@@ -32,7 +33,7 @@ img{
 	 height: 200px;
 	 width: 200px;
 	min-width: 220px;
-	box-shadow: 10px 20px 10px #888888;
+	box-shadow: 10px 20px 10px rgba(0,0,0,0.5);
 	overflow:hidden;
 	
 }
@@ -70,7 +71,9 @@ img{
 
 body {
   font-family: "Lato", sans-serif;
+
 }
+
 
 .sidebar {
   height: 100%;
@@ -117,6 +120,7 @@ h3{
 }
 #main {
   transition: margin-left .5s;
+    
 }
 
 /* On smaller screens, where height is less than 450px, change the style of the sidenav (less padding and a smaller font size) */
