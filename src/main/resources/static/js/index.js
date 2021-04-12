@@ -166,6 +166,6 @@ function openNav() {
    } 
    console.log(trackid);
    console.log(albumid);
-   window.location.href =  "./checkout?tracks="+trackid+"&albums="+albumid;
-   
+
+   window.location.href =  "./checkout?tracks="+trackid+"&albums="+albumid+"&total="+getTotal();
  }

@@ -15,20 +15,25 @@ import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import org.hibernate.annotations.GenericGenerator;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import com.example.Capstone.entities.User;
-
-
 
 
 @Entity
 public class Orders {
 	
 	@Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "order_id")
-	Integer id;
+	@GeneratedValue(
+		strategy= GenerationType.AUTO,
+	    generator="native"
+	)
+	@GenericGenerator(
+	    name = "native",
+	    strategy = "native"
+	)
+	private Integer id;
 	
 	@DateTimeFormat(pattern="dd/MM/yyyy")
 	@Temporal(TemporalType.DATE)
@@ -38,11 +43,27 @@ public class Orders {
 	@JoinColumn(name="user_id", nullable=true)
 	private User user;
 	
+	private String status;
+	
+	private String albums;
+	
+	private String songs;
+
+	private Float price;
+	
 	public Orders(Date orderDate, User user) {
 		super();
 		
 		this.orderDate = orderDate;
 		this.user = user;
+	}
+	public Orders(Date orderDate, User user, String status,String albums,String songs, Float price) {
+		this.orderDate = orderDate;
+		this.user = user;
+		this.status=status;
+		this.albums=albums;
+		this.songs=songs;
+		this.price=price;
 	}
 	
 	public Orders() {
@@ -51,7 +72,24 @@ public class Orders {
 //	
 //	@OneToMany(cascade = CascadeType.ALL, mappedBy="orders")
 //    private List<Music> musics;
-
+	public String getAlbums() {
+		return albums;
+	}
+	public void setAlbums(String albums) {
+		this.albums = albums;
+	}
+	public String getSongs() {
+		return songs;
+	}
+	public void setSongs(String songs) {
+		this.songs = songs;
+	}
+	public Float getPrice() {
+		return price;
+	}
+	public void setPrice(Float price) {
+		this.price = price;
+	}
 	public Integer getId() {
 		return id;
 	}
@@ -74,5 +112,13 @@ public class Orders {
 
 	public void setUser(User user) {
 		this.user = user;
+	}
+
+	public String getStatus() {
+		return status;
+	}
+
+	public void setStatus(String status) {
+		this.status = status;
 	}
 }

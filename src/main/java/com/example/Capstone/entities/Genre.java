@@ -29,6 +29,12 @@ public class Genre {
 
     public Genre(){}
     
+    public Genre(Long id, String Name){
+    	this.id = id;
+    	this.Name = Name;
+    	this.imageURL = null;
+    }
+    
     public Genre(Long id, String Name, String url){
     	this.id = id;
     	this.Name = Name;

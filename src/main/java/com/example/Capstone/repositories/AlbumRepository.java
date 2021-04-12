@@ -7,7 +7,8 @@ import java.util.Optional;
 
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
-
+import org.springframework.stereotype.Repository;
+@Repository
 public interface AlbumRepository extends CrudRepository<Album, Integer>{
 	@Query(value="SELECT * FROM album WHERE release_date > ?1", nativeQuery=true)
 	Iterable<Album> getAlbumsByReleaseDateGreaterThan(LocalDate Date);

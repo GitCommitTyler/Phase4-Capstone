@@ -46,18 +46,17 @@
                <nav>
                   <div class="nav nav-tabs" id="nav-tab" role="tablist">
                     <a class="nav-item nav-link active" id="nav-profile-tab" data-toggle="tab" href="#nav-profile" role="tab" aria-controls="nav-profile" aria-selected="true">Profile</a>
-                    <a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" href="#nav-contact" role="tab" aria-controls="nav-contact" aria-selected="false">Contact</a>
                     <a class="nav-item nav-link" id="nav-orders-tab" data-toggle="tab" href="#nav-orders" role="tab" aria-controls="nav-orders" aria-selected="false">Orders</a>
                   </div>
                </nav><br>
                <div class="tab-content" id="nav-tabContent">
                   
                   <div class="tab-pane fade show active" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
-                     <h3>Your Info</h3>
+                     <h2>Your Info</h2>
                      <h2><span class="text-success" th:utext="${message}"></span></h2>
                   <br>
                      <form th:action="@{/user/updateAccountInfo}" method="post" class="w-25 mx-auto">
-                        <div class="input-group mb-3">
+                        <div class="input-group mb-2">
                            <div class="input-group-prepend">
                              <div class="input-group-text">First Name:</div>
                            </div>
@@ -78,7 +77,7 @@
                         <input type="submit" value="Update Info">
                      </form>
                      <hr>
-                     <h3>Change Password</h3>
+                     <h2>Change Password</h2>
                      <h2><span class="text-success" th:utext="${message2}"></span></h2>
                      <br>
                      <form th:action="@{/user/updateAccountPassword}" method="post" class="w-25 mx-auto">
@@ -98,11 +97,8 @@
                         <input type="submit" value="Update Password">
                      </form>
                   </div>
-                  <div class="tab-pane fade" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab">
-                     <p>Contact Tab</p>
-                  </div>
                   <div class="tab-pane fade" id="nav-orders" role="tabpanel" aria-labelledby="nav-orders-tab">
-                     <p>Order Tab</p>
+                     <h5>Order Tab</h5>
                      <!-- This is my code -->
                      
                      
@@ -112,16 +108,19 @@
 				                <th> Order ID</th>
 				                <!-- <th> User ID</th> -->
 				                <th> Order Date</th>
-				                
+				                <th> Order Songs</th>
+                            <th> Order Albums</th>
+                            <th> Order Price</th>
 				            </tr>
 				        </thead>
 				    <tbody>
 				        <tr th:each="orders, iStat : ${orders}" >
-				            <td th:text="${orders.id}" />
+				            <td th:text="${orders.id}" >
 				            <!-- <td th:text="${orders.user.id}" /> -->
-				            <td th:text="${orders.orderDate}" />
-				            
-				        </tr>
+				            <td th:text="${orders.orderDate}" >
+				            <td th:text="${orders.songs}" >
+                        <td th:text="${orders.albums}" >
+                        <td th:text="${orders.price}" >
 				        </tbody>
 				    </table>
 				    
