@@ -24,16 +24,48 @@
     <div class="d-flex justify-content-center" >
 		<div class="w-75 p-3">
 			<div class="jumbotron" >
-            <th:black th:each="track:${tracks}" >
-               <div class="card w-75">
-                  <div class="card-body">
-                     <h5 class="card-title" th:text="${track.name}">Card title</h5>
-                     <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                     <a href="#" class="btn btn-primary">Button</a>
-                  </div>
+            <nav>
+               <div class="nav nav-tabs" id="nav-tab" role="tablist">
+                 <a class="nav-item nav-link active" id="nav-orderPreview-tab" data-toggle="tab" href="#nav-orderPreview" role="tab" aria-controls="nav-orderPreview" aria-selected="true" disabled>Order Preview</a>
+                 <a class="nav-item nav-link" id="nav-billing-tab" data-toggle="tab" href="#nav-billing" role="tab" aria-controls="nav-billing" aria-selected="false" disabled>Billing</a>
+                 <a class="nav-item nav-link" id="nav-confirmation-tab" data-toggle="tab" href="#nav-confirmation" role="tab" aria-controls="nav-confirmation" aria-selected="false" disabled>Confirmation</a>
                </div>
-            </div>
-         </div>  
+            </nav><br>
+            <div class="tab-content" id="nav-tabContent">
+               <div class="tab-pane fade show active" id="nav-orderPreview" role="tabpanel" aria-labelledby="nav-orderPreview-tab">                
+                  <th:block th:each="track:${tracks}" >
+                     <div class="card w-75">
+                        <div class="card-body">
+                           <h4 class="card-title" th:text="${track.name}">Card title</h4>
+                           <h5 class="card-subtitle mb-2 text-muted">Single</h5>
+                           <p class="card-text" th:text="${track.genre.name}"></p></br>
+                           <h6 class="card-text" th:text="'$'+${track.price}"></h6>
+                        </div>
+                     </div>
+                  </th:block>
+                  <th:block th:each="albums:${albums}" >
+                     <div class="card w-75">
+                        <div class="card-body">
+                           <h5 class="card-title" th:text="${albums.name}">Card title</h5>
+                           <h6 class="card-subtitle mb-2 text-muted">Album</h6>
+                           <p class="card-text" th:text="${albums.genre.name}"></p>
+                           <p class="card-text" th:text="${albums.artist}"></p>
+                           <p class="card-text" th:text="'$'+${albums.price}"></p>
+                        </div>
+                     </div>
+                  </th:block>
+                  <h3 th:text="'Total=$'+${total}"></h3>
+                  <a class="nav-item nav-link" id="nav-billing-tab" data-toggle="tab" href="#nav-billing" role="tab" aria-controls="nav-billing" aria-selected="false"><button style="float:right;">Next</button></a>
+               </div>
+               <div class="tab-pane fade" id="nav-billing" role="tabpanel" aria-labelledby="nav-billing-tab">
+                  <p>Billing Tab</p>
+                  <a class="nav-item nav-link" id="nav-confirmation-tab" data-toggle="tab" href="#nav-confirmation" role="tab" aria-controls="nav-confirmation" aria-selected="false"><button style="float:right;">Next</button></a>
+               </div>
+               <div class="tab-pane fade" id="nav-confirmation" role="tabpanel" aria-labelledby="nav-confirmation-tab">
+                  <p>Confirmation Tab</p>
+               </div>
+            </div>  
+         </div>
       </div>
    </div>
 </body>
