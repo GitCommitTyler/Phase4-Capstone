@@ -128,6 +128,7 @@ public class HomeController {
 			break;
 			
 		}
+		allAlbums.forEach(x->logger.info(x.getImageURL()));
 		return "user/allalbums";
 	}
 	
