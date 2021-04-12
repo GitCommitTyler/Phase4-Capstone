@@ -25,10 +25,12 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.example.Capstone.entities.Album;
 import com.example.Capstone.entities.Genre;
 import com.example.Capstone.entities.Music;
+import com.example.Capstone.entities.Orders;
 import com.example.Capstone.entities.User;
 import com.example.Capstone.services.AlbumService;
 import com.example.Capstone.services.GenreService;
 import com.example.Capstone.services.MusicService;
+import com.example.Capstone.services.OrdersService;
 import com.example.Capstone.services.UserService;
 
 
@@ -47,6 +49,8 @@ public class HomeController {
 	private MusicService musicService;
 	@Autowired
 	private UserService userService;
+	@Autowired
+	private OrdersService orderService;
 	
 	Logger logger = LoggerFactory.getLogger(HomeController.class);
 	
@@ -68,11 +72,13 @@ public class HomeController {
 			Iterable<Album> albums = albumService.getAlbums();
 			Iterable<Genre> genres = genreService.GetAllGenre();
 			Iterable<User> users = userService.findAllUsers();
+			Iterable<Orders> orders = orderService.findAllOrders();
 			
 	        model.addAttribute("music", Musics);
 	        model.addAttribute("album", albums);
 	        model.addAttribute("genre", genres);
 	        model.addAttribute("user", users);
+	        model.addAttribute("order", orders);
 			return "/user/admin";
 		}
 		List<Album> newAlbums = (List<Album>)albumService.getNewAlbums(getDateThreshhold());

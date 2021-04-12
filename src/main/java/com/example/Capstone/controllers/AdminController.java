@@ -21,11 +21,13 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.example.Capstone.entities.Album;
 import com.example.Capstone.entities.Genre;
 import com.example.Capstone.entities.Music;
+import com.example.Capstone.entities.Orders;
 import com.example.Capstone.entities.User;
 import com.example.Capstone.repositories.AlbumRepository;
 import com.example.Capstone.services.AlbumService;
 import com.example.Capstone.services.GenreService;
 import com.example.Capstone.services.MusicService;
+import com.example.Capstone.services.OrdersService;
 import com.example.Capstone.services.UserService;
 
 
@@ -44,17 +46,22 @@ public class AdminController {
 	@Autowired
 	UserService userService;
 	
+	@Autowired
+	OrdersService orderService;
+	
 	@RequestMapping(value= "/user/admin", method= RequestMethod.GET)
 	public String AdminPage(Model model) {
 		Iterable<Music> Musics = musicService.GetAllMusic();
 		Iterable<Album> albums = albumService.getAlbums();
 		Iterable<Genre> genres = genreService.GetAllGenre();
 		Iterable<User> users = userService.findAllUsers();
+		Iterable<Orders> orders = orderService.findAllOrders();
 		
         model.addAttribute("music", Musics);
         model.addAttribute("album", albums);
         model.addAttribute("genre", genres);
         model.addAttribute("user", users);
+        model.addAttribute("order", orders);
 		return "/user/admin";
 	}
 	
@@ -64,7 +71,7 @@ public class AdminController {
 		Iterable<Album> albums = albumService.getAlbums();
 		Iterable<Genre> genres = genreService.GetAllGenre();
 		Iterable<User> users = userService.findAllUsers();
-		
+		Iterable<Orders> orders = orderService.findAllOrders();
 		
 		ArrayList<Genre> genreAL = (ArrayList<Genre>) genres;
 		ArrayList<String> names = new ArrayList<>();
@@ -83,7 +90,8 @@ public class AdminController {
         model.addAttribute("album", albums);
         model.addAttribute("genre", genres);
         model.addAttribute("user", users);
-		return "/user/admin";
+        model.addAttribute("order", orders);
+        return "/user/admin";
 	}
 	
 	@RequestMapping(value= "/deleteGenre", method= RequestMethod.GET)
@@ -92,6 +100,7 @@ public class AdminController {
 		Iterable<Album> albums = albumService.getAlbums();
 		Iterable<Genre> genres = genreService.GetAllGenre();
 		Iterable<User> users = userService.findAllUsers();
+		Iterable<Orders> orders = orderService.findAllOrders();
 		
 		ArrayList<String> allGenre = new ArrayList<>();
 		for(Album a : albums)
@@ -110,7 +119,8 @@ public class AdminController {
         model.addAttribute("album", albums);
         model.addAttribute("genre", genres);
         model.addAttribute("user", users);
-		return "/user/admin";
+        model.addAttribute("order", orders);
+        return "/user/admin";
 	}
 	
 	@RequestMapping(value= "/editMusic", method= RequestMethod.GET)
@@ -119,6 +129,7 @@ public class AdminController {
 		Iterable<Album> albums = albumService.getAlbums();
 		Iterable<Genre> genres = genreService.GetAllGenre();
 		Iterable<User> users = userService.findAllUsers();
+		Iterable<Orders> orders = orderService.findAllOrders();
 		
 		if(musicService.findMusic(editSongID) != null)
 		{
@@ -135,7 +146,8 @@ public class AdminController {
         model.addAttribute("album", albums);
         model.addAttribute("genre", genres);
         model.addAttribute("user", users);
-		return "/user/admin";
+        model.addAttribute("order", orders);
+        return "/user/admin";
 	}
 	
 	@RequestMapping(value= "/addMusic", method= RequestMethod.GET)
@@ -144,6 +156,7 @@ public class AdminController {
 		Iterable<Album> albums = albumService.getAlbums();
 		Iterable<Genre> genres = genreService.GetAllGenre();
 		Iterable<User> users = userService.findAllUsers();
+		Iterable<Orders> orders = orderService.findAllOrders();
 		
 		ArrayList<Music> musicAL = (ArrayList<Music>) Musics;
 		ArrayList<String> names = new ArrayList<>();
@@ -175,7 +188,8 @@ public class AdminController {
         model.addAttribute("album", albums);
         model.addAttribute("genre", genres);
         model.addAttribute("user", users);
-		return "/user/admin";
+        model.addAttribute("order", orders);
+        return "/user/admin";
 	}
 	
 	@RequestMapping(value= "/deleteSong", method= RequestMethod.GET)
@@ -184,6 +198,7 @@ public class AdminController {
 		Iterable<Album> albums = albumService.getAlbums();
 		Iterable<Genre> genres = genreService.GetAllGenre();
 		Iterable<User> users = userService.findAllUsers();
+		Iterable<Orders> orders = orderService.findAllOrders();
 		
 		Long l = new Long(deleteSong);
 		for(Music m : Musics)
@@ -200,7 +215,8 @@ public class AdminController {
         model.addAttribute("album", albums);
         model.addAttribute("genre", genres);
         model.addAttribute("user", users);
-		return "/user/admin";
+        model.addAttribute("order", orders);
+        return "/user/admin";
 	}
 	
 	@RequestMapping(value= "/editUserActive", method= RequestMethod.GET)
@@ -210,6 +226,7 @@ public class AdminController {
 		Iterable<Album> albums = albumService.getAlbums();
 		Iterable<Genre> genres = genreService.GetAllGenre();
 		Iterable<User> users = userService.findAllUsers();
+		Iterable<Orders> orders = orderService.findAllOrders();
 		
 		ArrayList<User> userAL = (ArrayList<User>) users;
 		ArrayList<Integer> ids = new ArrayList<>();
@@ -233,7 +250,8 @@ public class AdminController {
         model.addAttribute("album", albums);
         model.addAttribute("genre", genres);
         model.addAttribute("user", users);
-		return "/user/admin";
+        model.addAttribute("order", orders);
+        return "/user/admin";
 	}
 	
 	@RequestMapping(value= "/editAlbum", method= RequestMethod.GET)
@@ -242,7 +260,7 @@ public class AdminController {
 		Iterable<Album> albums = albumService.getAlbums();
 		Iterable<Genre> genres = genreService.GetAllGenre();
 		Iterable<User> users = userService.findAllUsers();
-		
+		Iterable<Orders> orders = orderService.findAllOrders();
 		
 		for(Album a : albums)
 		{
@@ -261,7 +279,8 @@ public class AdminController {
         model.addAttribute("album", albums);
         model.addAttribute("genre", genres);
         model.addAttribute("user", users);
-		return "/user/admin";
+        model.addAttribute("order", orders);
+        return "/user/admin";
 	}
 	
 	@RequestMapping(value= "/addAlbum", method= RequestMethod.GET)
@@ -270,6 +289,7 @@ public class AdminController {
 		Iterable<Album> albums = albumService.getAlbums();
 		Iterable<Genre> genres = genreService.GetAllGenre();
 		Iterable<User> users = userService.findAllUsers();
+		Iterable<Orders> orders = orderService.findAllOrders();
 		
 		ArrayList<Album> albumAL = (ArrayList<Album>) albums;
 		ArrayList<String> names = new ArrayList<>();
@@ -289,7 +309,8 @@ public class AdminController {
         model.addAttribute("album", albums);
         model.addAttribute("genre", genres);
         model.addAttribute("user", users);
-		return "/user/admin";
+        model.addAttribute("order", orders);
+        return "/user/admin";
 	}
 	
 	@RequestMapping(value= "/deleteAlbum", method= RequestMethod.GET)
@@ -298,6 +319,7 @@ public class AdminController {
 		Iterable<Album> albums = albumService.getAlbums();
 		Iterable<Genre> genres = genreService.GetAllGenre();
 		Iterable<User> users = userService.findAllUsers();
+		Iterable<Orders> orders = orderService.findAllOrders();
 		
 		Long l = new Long(deleteAlbum);
 		for(Album a : albums)
@@ -316,6 +338,33 @@ public class AdminController {
         model.addAttribute("album", albums);
         model.addAttribute("genre", genres);
         model.addAttribute("user", users);
+        model.addAttribute("order", orders);
+        return "/user/admin";
+	}
+	@RequestMapping(value= "/editOrderStatus", method= RequestMethod.GET)
+	public String editStatus(@RequestParam("editOrderStatus") Integer editOrderStatus, @RequestParam("newStatus") String newStatus, Model model) {
+		Iterable<Music> Musics = musicService.GetAllMusic();
+		Iterable<Album> albums = albumService.getAlbums();
+		Iterable<Genre> genres = genreService.GetAllGenre();
+		Iterable<User> users = userService.findAllUsers();
+		Iterable<Orders> orders = orderService.findAllOrders();
+		
+		for(Orders o : orders)
+		{
+			if(o.getId() == editOrderStatus)
+			{
+				o.setStatus(newStatus);
+				orderService.save(o);
+				model.addAttribute("orderStatusMessage", "Successfully Edited Status");
+			}
+			else model.addAttribute("orderStatusMessage", "Error: ID not found");
+		}
+		
+        model.addAttribute("music", Musics);
+        model.addAttribute("album", albums);
+        model.addAttribute("genre", genres);
+        model.addAttribute("user", users);
+        model.addAttribute("order", orders);
 		return "/user/admin";
 	}
 	

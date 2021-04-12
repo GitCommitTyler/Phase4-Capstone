@@ -323,6 +323,37 @@
 					    	<input type="submit" value="Inactive" class="btn btn-danger"/>
 					    </div>
 					</form>
+					<br>
+					<h1 class="display-4">Orders:</h1>
+				    
+				    <table class="table table-info table-striped table-bordered table-hover mx-auto">
+				        <thead>
+				            <tr>
+				                <th> Order ID</th>				                
+				                <th> Order Date</th>
+				                <th> Status</th>
+				            </tr>
+				        </thead>
+				    <tbody>
+				        <tr th:each="order, iStat : ${order}" >
+				            <td th:text="${order.id}" />
+				            <td th:text="${order.orderDate}" />
+				            <td th:text="${order.status}" />
+				        </tr>
+				        </tbody>
+				    </table>
+				    <h2 style="color: mediumseagreen"><span th:utext="${orderStatusMessage}"></span></h2>
+				    <p class="lead">Edit Order Status</p>
+				    <form method="get" action="/editOrderStatus" class="w-50 mx-auto">
+						<div class="input-group mb-2">
+					        <div class="input-group-prepend">
+					          <div class="input-group-text"><span class="input-group-addon"><i class="fab fa-slack-hash"></i></span></div>
+					        </div>
+					    	<input type="number" class="form-control" name="editOrderStatus" placeholder="ID of Order to be Edited..." id="editOrderStatus" required>
+					    	<input type="text" class="form-control" name="newStatus" placeholder="New Status..." id="newStatus" required>					    	
+					    	<input type="submit" value="Edit" class="btn btn-info"/>
+					    </div>
+					</form>
 				</div>
 			</div>
 		</div>
