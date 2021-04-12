@@ -166,16 +166,17 @@ function openNav() {
    } 
    console.log(trackid);
    console.log(albumid);
+   window.location.href="http://localhost:8090/user/checkout";
    $.ajax({
       type : "POST",
-      url : "http://localhost:8090/user/checkout",
+      url : "/checkout",
       data : {
           albums:albumid,
           tracks:trackid
       },
       success : function(response) {
          console.log("POST REQUEST SUCCESS");
-         //window.location.href="http://localhost:8090/user/checkout"
+         window.location="/user/checkout"
       },
       error : function(e) {
          ('Error: ' + e);

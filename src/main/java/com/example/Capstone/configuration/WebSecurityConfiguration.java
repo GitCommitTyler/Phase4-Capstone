@@ -44,7 +44,7 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .antMatchers("/registration").permitAll()
                 .antMatchers("/admin/**").hasAuthority("ADMIN")
                 .antMatchers("/user/**").hasAuthority("USER")
-                .antMatchers("/user/checkout").permitAll()
+                //.antMatchers("/user/checkout").permitAll()
                 .anyRequest()
                 .authenticated()
                 .and().csrf().disable()  //cross site request forgery-> 

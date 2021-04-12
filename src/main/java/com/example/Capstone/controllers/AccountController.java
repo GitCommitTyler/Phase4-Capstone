@@ -83,12 +83,17 @@ public class AccountController {
 		return"user/account";
 	}
 	@GetMapping(value="/user/checkout")
-	public String goToCheckOut(ModelMap model){
-		
+	public String goToCheckOut(Model model){
+		logger.info("GET goToCheckout");
+		List<Album> albums = (List<Album>) model.getAttribute("albums");
+		for(Album a:albums) {
+			logger.info(a.getName());
+		}
 		return"user/checkout";
 	}
 	@PostMapping(value="/user/checkout")
-	public ModelAndView createCheckout(@RequestParam (value="tracks[]") String[] tracks, @RequestParam (value="albums[]") String[] albums,ModelMap model ) {
+	public String createCheckout(@RequestParam (value="tracks[]") String[] tracks, @RequestParam (value="albums[]") String[] albums,Model model ) {
+		logger.info("POST createCheckout");
 		List<Music> cartTracks=new LinkedList<Music>();
 		List<Album> cartAlbums=new LinkedList<Album>();
 		for(String str:tracks) {
@@ -104,7 +109,7 @@ public class AccountController {
 		}
 		model.addAttribute("albums",cartAlbums);
 		model.addAttribute("tracks",cartTracks);
-		return new ModelAndView("/user/checkout",model);
+		return "/user/checkout";
 	}
 	
 }
