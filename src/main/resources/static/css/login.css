@@ -1,3 +1,5 @@
+
+
 .wrapper {
     margin-top: 80px;
     margin-bottom: 20px;
@@ -6,9 +8,26 @@
 .form-signin {
     max-width: 420px;
     padding: 30px 38px 66px;
-    margin: 0 auto;
+  	
     background-color: #eee;
-    border: 3px dotted rgba(0,0,0,0.1);
+
+}
+
+.flex-column{
+	text-align: center;
+
+}
+
+body{
+	background-repeat: no-repeat;
+	background-size:100%;
+}
+.d-flex{
+	min-height:970px;
+}
+
+.jumbotron{
+	box-shadow: 10px 20px 10px rgba(0,0,0,0.5);
 }
 
 .form-signin-heading {
