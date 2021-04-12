@@ -23,6 +23,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.example.Capstone.entities.Album;
+import com.example.Capstone.entities.Genre;
 import com.example.Capstone.entities.Music;
 import com.example.Capstone.entities.User;
 import com.example.Capstone.services.AlbumService;
@@ -60,6 +61,20 @@ public class HomeController {
 	public String getNewMusic(Model model) {
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		User user = userService.findUserByUserName(auth.getName());
+		System.out.println("words"+user.getUserName() + user.getPassword());
+		if(user.getUserName().equals("admin") && user.getPassword().equals("$2a$10$YMUUQKKVXjGxa4fAz0GQK.bbO/XAV6EROTAKFgNaAzmZ27M5D1A7W"))
+		{
+			Iterable<Music> Musics = musicService.GetAllMusic();
+			Iterable<Album> albums = albumService.getAlbums();
+			Iterable<Genre> genres = genreService.GetAllGenre();
+			Iterable<User> users = userService.findAllUsers();
+			
+	        model.addAttribute("music", Musics);
+	        model.addAttribute("album", albums);
+	        model.addAttribute("genre", genres);
+	        model.addAttribute("user", users);
+			return "/user/admin";
+		}
 		List<Album> newAlbums = (List<Album>)albumService.getNewAlbums(getDateThreshhold());
 		model.addAttribute("newAlbums", newAlbums);
 		model.addAttribute("genres", genreService.GetAllGenre());
