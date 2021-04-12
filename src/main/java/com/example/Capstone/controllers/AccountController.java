@@ -34,6 +34,8 @@ public class AccountController {
     OrdersService ordersService;
 	@Autowired
 	AlbumService albumService;
+	@Autowired
+	OrdersService orderService;
 	Logger logger = LoggerFactory.getLogger(AccountController.class);
 	@GetMapping(value="/user/account")
 	public String getAccountInfo(Model model) {
@@ -77,16 +79,13 @@ public class AccountController {
 		}
 		return"user/account";
 	}
-//	@GetMapping(value="/user/checkout")
-//	public String goToCheckOut(ModelMap model){
-//		
-//		return"user/checkout";
-//	}
+	
 	@GetMapping(value="/user/checkout")
 	public String createCheckout(@RequestParam (value="tracks") String[] tracks, @RequestParam (value="albums") String[] albums,
-			@RequestParam (value="total") String total,ModelMap model ) {
+			@RequestParam (value="total") String total,Model model ) {
 		List<Music> cartTracks=new LinkedList<Music>();
 		List<Album> cartAlbums=new LinkedList<Album>();
+		orderService.saveInfo(cartTracks, cartAlbums, total);
 		for(String str:tracks) {
 			cartTracks.add(musicService.GetMusicById(Long.parseLong(str)).get());	
 		}
@@ -104,6 +103,21 @@ public class AccountController {
 		model.addAttribute("tracks",cartTracks);
 		model.addAttribute("total",total);
 		return "user/checkout";
+	}
+	@PostMapping(value="/user/processOrder")
+	public String processOrder(Model model) {
+		List<Album> albums = orderService.getAlbums();
+		List<Music> tracks =orderService.getTracks();
+		String total=orderService.getTotal();
+		
+		for(Album album:albums) {
+			logger.info(album.getName());
+		}
+		for(Music track:tracks) {
+			logger.info(track.getName());
+		}
+		Orders order=orderService.createOrder(albums,tracks,total);
+		return "redirect:/user/index";
 	}
 	
 }

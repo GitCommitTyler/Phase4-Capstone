@@ -73,6 +73,7 @@ public class UserService {
     public User updatePassword(User user, String password, String confirmPassword) {
     	if(password.equals(confirmPassword)) {
     		user.setPassword(bCryptPasswordEncoder.encode(password));
+    		userRepository.save(user);
     		return user;
     	}
     	return null;
