@@ -20,8 +20,6 @@ import org.springframework.format.annotation.DateTimeFormat;
 import com.example.Capstone.entities.User;
 
 
-
-
 @Entity
 public class Orders {
 	

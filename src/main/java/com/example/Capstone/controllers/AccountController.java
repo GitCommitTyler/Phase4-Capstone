@@ -98,6 +98,8 @@ public class AccountController {
 				e.printStackTrace();
 			}
 		}
+		int number= cartAlbums.size()+cartTracks.size();
+		model.addAttribute("number",Integer.toString(number));
 		model.addAttribute("albums",cartAlbums);
 		model.addAttribute("tracks",cartTracks);
 		model.addAttribute("total",total);
