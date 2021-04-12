@@ -21,14 +21,12 @@ import org.springframework.format.annotation.DateTimeFormat;
 import com.example.Capstone.entities.User;
 
 
-
-
 @Entity
 public class Orders {
 	
 	@Id
 	@GeneratedValue(
-	    strategy= GenerationType.AUTO,
+		strategy= GenerationType.AUTO,
 	    generator="native"
 	)
 	@GenericGenerator(
@@ -47,11 +45,25 @@ public class Orders {
 	
 	private String status;
 	
+	private String albums;
+	
+	private String songs;
+
+	private Float price;
+	
 	public Orders(Date orderDate, User user) {
 		super();
 		
 		this.orderDate = orderDate;
 		this.user = user;
+	}
+	public Orders(Date orderDate, User user, String status,String albums,String songs, Float price) {
+		this.orderDate = orderDate;
+		this.user = user;
+		this.status=status;
+		this.albums=albums;
+		this.songs=songs;
+		this.price=price;
 	}
 	
 	public Orders() {
@@ -60,7 +72,24 @@ public class Orders {
 //	
 //	@OneToMany(cascade = CascadeType.ALL, mappedBy="orders")
 //    private List<Music> musics;
-
+	public String getAlbums() {
+		return albums;
+	}
+	public void setAlbums(String albums) {
+		this.albums = albums;
+	}
+	public String getSongs() {
+		return songs;
+	}
+	public void setSongs(String songs) {
+		this.songs = songs;
+	}
+	public Float getPrice() {
+		return price;
+	}
+	public void setPrice(Float price) {
+		this.price = price;
+	}
 	public Integer getId() {
 		return id;
 	}
