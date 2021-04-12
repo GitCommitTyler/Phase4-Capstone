@@ -20,4 +20,6 @@ public interface AlbumRepository extends CrudRepository<Album, Integer>{
 	@Query("select distinct artist from Album")
 	Iterable<String> getUniqueArtists();
 	
+	@Query(value="SELECT * FROM album GROUP BY artist", nativeQuery=true)
+	Iterable<Album> getAlbumsGroupByArtist();
 }

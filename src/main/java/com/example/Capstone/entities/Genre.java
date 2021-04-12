@@ -24,12 +24,15 @@ public class Genre {
     private Long id;
 
     private String Name;
+    
+    public String imageURL;
 
     public Genre(){}
     
-    public Genre(Long id, String Name){
+    public Genre(Long id, String Name, String url){
     	this.id = id;
     	this.Name = Name;
+    	this.imageURL = url;
     }
     
 	public Long getId() {
@@ -46,6 +49,14 @@ public class Genre {
 
 	public void setName(String name) {
 		Name = name;
+	}
+	
+	public String getImageUrl() {
+		return this.imageURL;
+	}
+
+	public void setImageURL(String url) {
+		this.imageURL = url;
 	}
 
 }
