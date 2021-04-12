@@ -219,12 +219,13 @@ public class AdminController {
 		{
 			for(User user : userAL)
 			{	
-				if(user.getId() == editActive)
+				if(user.getId() == editActive && !user.getUserName().equals("admin"))
 				{
-					user.setActive(false);
-					//userService.saveUser(user);
+					user.setActive(!user.getActive());
+					userService.save(user);
 					model.addAttribute("userStatusMessage", "Successfully Edited User");
 				}
+				else model.addAttribute("userStatusMessage", "Error: You cannot set Admin to inactive");
 			}
 		}
 		

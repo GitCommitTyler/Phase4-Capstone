@@ -55,6 +55,9 @@ public class UserService {
         user.setRoles(new HashSet<Role>(Arrays.asList(userRole)));
         return userRepository.save(user);
     }
+    public User save(User user) {
+        return userRepository.save(user);
+    }
     public User updateInfo(User user,String firstName,String lastName,String email) {
     	if(user==null&&firstName==null&&lastName==null&&email==null) {
     		return null;

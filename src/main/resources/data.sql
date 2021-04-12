@@ -58,3 +58,6 @@ INSERT INTO `user_role`(user_id,role_id) VALUES(1,2);
 
 insert into `users` (user_id,active,email,last_name,name,password,user_name) VALUES(2,1,"a@g.com","a","a","$2a$10$YMUUQKKVXjGxa4fAz0GQK.bbO/XAV6EROTAKFgNaAzmZ27M5D1A7W","admin");
 INSERT INTO `user_role`(user_id,role_id) VALUES(2,2);
+
+insert into `users` (user_id,active,email,last_name,name,password,user_name) VALUES(3,1,"b@g.com","b","b","$2a$10$YMUUQKKVXjGxa4fAz0GQK.bbO/XAV6EROTAKFgNaAzmZ27M5D1A7W","test123");
+INSERT INTO `user_role`(user_id,role_id) VALUES(3,1);
