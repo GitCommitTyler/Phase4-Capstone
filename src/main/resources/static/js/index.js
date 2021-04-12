@@ -57,7 +57,7 @@ function doShowAll() {
         }
        //Bind the data to HTML table.
        
-       var checkoutButton='</br><button type="button" onclick="/user/checkout">Checkout</button>';
+       var checkoutButton='</br><button type="button" onclick="processCheckout()">Checkout</button>';
        document.getElementById("total").innerHTML="Total=$"+getTotal().toFixed(2);
        if(cards !=null){
          document.getElementById("total").innerHTML="Total=$"+getTotal().toFixed(2)+checkoutButton;
@@ -154,4 +154,31 @@ function openNav() {
  function closeNav() {
    document.getElementById("mySidebar").style.width = "0";
    document.getElementById("main").style.marginLeft= "0";
+ }
+ function processCheckout(){
+   var trackid=[];
+   var albumid=[];
+   for(var i in mytracks){
+      trackid.push(mytracks[i].trackid);
+   } 
+   for(var i in myalbums){
+      albumid.push(myalbums[i].albumid);
+   } 
+   console.log(trackid);
+   console.log(albumid);
+   $.ajax({
+      type : "POST",
+      url : "http://localhost:8090/user/checkout",
+      data : {
+          albums:albumid,
+          tracks:trackid
+      },
+      success : function(response) {
+         console.log("POST REQUEST SUCCESS");
+         //window.location.href="http://localhost:8090/user/checkout"
+      },
+      error : function(e) {
+         ('Error: ' + e);
+      }
+  }); 
  }

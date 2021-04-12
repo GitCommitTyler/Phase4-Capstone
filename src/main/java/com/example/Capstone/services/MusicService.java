@@ -44,7 +44,7 @@ public class MusicService {
         }
         return returnList;
     }
-    public Optional<Music> GetMusicById(Integer id)  {
+    public Optional<Music> GetMusicById(Long id)  {
         Optional<Music> foundMusic = MusicRepository.findById(id);
 
         return (foundMusic);
