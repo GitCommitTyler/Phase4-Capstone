@@ -56,12 +56,15 @@
 								
 					    	</th:block>
                       <!--Extra card to see all albums-->
+                      		<div class="col-md-auto d-flex align-items-end">
 					    		<div class="card" style="min-width:200px;">
-							    	<div class="card-body text-wrap" style="min-width:200px">
+					    			<img class="card-img-top" th:src="${albums[0].imageURL}">
+							    	<div class="card-img-overlay card-img-overlay-show overlay-dark-show text-wrap">
 										<h5 class="card-title">See All Albums</h5>
 										<a href="./allalbums?criterion=&value=" class="stretched-link"></a>
 									</div>
 								</div>
+							</div>
 
 					    		<div class="modal fade " id="albumModalCenter" tabindex="-1" aria-hidden="true" role="dialog" aria-labelledby="albumModalCenterTitle" >
 								  <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
@@ -84,7 +87,8 @@
 
 					    		<div class="col-md-auto">
 					    			<div class="card" th:id="'genre'+${genre.id}">
-					    				<div class="card-body  text-wrap">
+					    				<img class="card-img-top text-wrap" th:src="${genre.imageURL}">
+					    				<div class="card-img-overlay card-img-overlay-show overlay-dark-show text-wrap">
 											<h5 class="card-title" th:text="${genre.Name}"></h5>
 
 											<a th:href="'./allalbums?criterion=genre&value='+${genre.Id}" class="stretched-link"></a>
@@ -98,15 +102,16 @@
 					</div>	
 					<p class="lead" style="text-justify;">Browse By Artist</p>
 					<div class="container-fluid body-row" >
-					    <div class="row flex-nowrap justify-content-start" style="">
-					    	<th:block th:each="artist, iStat: ${artists}">
+					    <div class="row flex-nowrap justify-content-start">
+					    	<th:block th:each="artist, iStat: ${albumsByArtist}">
 
 					    		<div class="col-md-auto">
-					    			<div class="card" th:id="'artist'+${iStat}">
-					    				<div class="card-body  text-wrap">
-											<h5 class="card-title" th:text="${artist}"></h5>
+					    			<div class="card" th:id="'artist.artist'+${iStat}">
+					    				<img class="card-img-top text-wrap" th:src="${artist.imageURL}">
+					    				<div class="card-img-overlay card-img-overlay-show overlay-dark-show text-wrap">
+											<h5 class="card-title" th:text="${artist.artist}"></h5>
 
-											<a th:href="'./allalbums?criterion=artist&value='+${artist}" class="stretched-link"></a>
+											<a th:href="'./allalbums?criterion=artist&value='+${artist.artist}" class="stretched-link"></a>
 
 										</div>
 										
