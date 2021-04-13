@@ -11,6 +11,8 @@ import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -30,7 +32,6 @@ import com.example.Capstone.services.MusicService;
 import com.example.Capstone.services.OrdersService;
 import com.example.Capstone.services.UserService;
 
-
 @Controller
 public class AdminController {
 	
@@ -49,20 +50,24 @@ public class AdminController {
 	@Autowired
 	OrdersService orderService;
 	
-	@RequestMapping(value= "/user/admin", method= RequestMethod.GET)
+	@RequestMapping(value= "/admin", method= RequestMethod.GET)
 	public String AdminPage(Model model) {
+		
 		Iterable<Music> Musics = musicService.GetAllMusic();
 		Iterable<Album> albums = albumService.getAlbums();
 		Iterable<Genre> genres = genreService.GetAllGenre();
 		Iterable<User> users = userService.findAllUsers();
 		Iterable<Orders> orders = orderService.findAllOrders();
 		
+		
+		
         model.addAttribute("music", Musics);
         model.addAttribute("album", albums);
         model.addAttribute("genre", genres);
         model.addAttribute("user", users);
         model.addAttribute("order", orders);
-		return "/user/admin";
+		return "/admin";
+		
 	}
 	
 	@RequestMapping(value= "/addGenre", method= RequestMethod.GET)
@@ -91,7 +96,7 @@ public class AdminController {
         model.addAttribute("genre", genres);
         model.addAttribute("user", users);
         model.addAttribute("order", orders);
-        return "/user/admin";
+        return "/admin";
 	}
 	
 	@RequestMapping(value= "/deleteGenre", method= RequestMethod.GET)
@@ -120,7 +125,7 @@ public class AdminController {
         model.addAttribute("genre", genres);
         model.addAttribute("user", users);
         model.addAttribute("order", orders);
-        return "/user/admin";
+        return "/admin";
 	}
 	
 	@RequestMapping(value= "/editMusic", method= RequestMethod.GET)
@@ -147,7 +152,7 @@ public class AdminController {
         model.addAttribute("genre", genres);
         model.addAttribute("user", users);
         model.addAttribute("order", orders);
-        return "/user/admin";
+        return "/admin";
 	}
 	
 	@RequestMapping(value= "/addMusic", method= RequestMethod.GET)
@@ -189,7 +194,7 @@ public class AdminController {
         model.addAttribute("genre", genres);
         model.addAttribute("user", users);
         model.addAttribute("order", orders);
-        return "/user/admin";
+        return "/admin";
 	}
 	
 	@RequestMapping(value= "/deleteSong", method= RequestMethod.GET)
@@ -216,7 +221,7 @@ public class AdminController {
         model.addAttribute("genre", genres);
         model.addAttribute("user", users);
         model.addAttribute("order", orders);
-        return "/user/admin";
+        return "/admin";
 	}
 	
 	@RequestMapping(value= "/editUserActive", method= RequestMethod.GET)
@@ -251,7 +256,7 @@ public class AdminController {
         model.addAttribute("genre", genres);
         model.addAttribute("user", users);
         model.addAttribute("order", orders);
-        return "/user/admin";
+        return "/admin";
 	}
 	
 	@RequestMapping(value= "/editAlbum", method= RequestMethod.GET)
@@ -280,7 +285,7 @@ public class AdminController {
         model.addAttribute("genre", genres);
         model.addAttribute("user", users);
         model.addAttribute("order", orders);
-        return "/user/admin";
+        return "/admin";
 	}
 	
 	@RequestMapping(value= "/addAlbum", method= RequestMethod.GET)
@@ -310,7 +315,7 @@ public class AdminController {
         model.addAttribute("genre", genres);
         model.addAttribute("user", users);
         model.addAttribute("order", orders);
-        return "/user/admin";
+        return "/admin";
 	}
 	
 	@RequestMapping(value= "/deleteAlbum", method= RequestMethod.GET)
@@ -339,7 +344,7 @@ public class AdminController {
         model.addAttribute("genre", genres);
         model.addAttribute("user", users);
         model.addAttribute("order", orders);
-        return "/user/admin";
+        return "/admin";
 	}
 	@RequestMapping(value= "/editOrderStatus", method= RequestMethod.GET)
 	public String editStatus(@RequestParam("editOrderStatus") Integer editOrderStatus, @RequestParam("newStatus") String newStatus, Model model) {
@@ -365,7 +370,7 @@ public class AdminController {
         model.addAttribute("genre", genres);
         model.addAttribute("user", users);
         model.addAttribute("order", orders);
-		return "/user/admin";
+		return "/admin";
 	}
 	
 	public boolean hasSongs(Album a)
