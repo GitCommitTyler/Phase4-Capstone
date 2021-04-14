@@ -66,7 +66,7 @@ public class AdminController {
         model.addAttribute("genre", genres);
         model.addAttribute("user", users);
         model.addAttribute("order", orders);
-		return "/admin";
+		return "admin";
 		
 	}
 	
@@ -96,7 +96,7 @@ public class AdminController {
         model.addAttribute("genre", genres);
         model.addAttribute("user", users);
         model.addAttribute("order", orders);
-        return "/admin";
+        return "admin";
 	}
 	
 	@RequestMapping(value= "/deleteGenre", method= RequestMethod.GET)
@@ -125,7 +125,7 @@ public class AdminController {
         model.addAttribute("genre", genres);
         model.addAttribute("user", users);
         model.addAttribute("order", orders);
-        return "/admin";
+        return "admin";
 	}
 	
 	@RequestMapping(value= "/editMusic", method= RequestMethod.GET)
@@ -152,7 +152,7 @@ public class AdminController {
         model.addAttribute("genre", genres);
         model.addAttribute("user", users);
         model.addAttribute("order", orders);
-        return "/admin";
+        return "admin";
 	}
 	
 	@RequestMapping(value= "/addMusic", method= RequestMethod.GET)
@@ -194,7 +194,7 @@ public class AdminController {
         model.addAttribute("genre", genres);
         model.addAttribute("user", users);
         model.addAttribute("order", orders);
-        return "/admin";
+        return "admin";
 	}
 	
 	@RequestMapping(value= "/deleteSong", method= RequestMethod.GET)
@@ -221,7 +221,7 @@ public class AdminController {
         model.addAttribute("genre", genres);
         model.addAttribute("user", users);
         model.addAttribute("order", orders);
-        return "/admin";
+        return "admin";
 	}
 	
 	@RequestMapping(value= "/editUserActive", method= RequestMethod.GET)
@@ -256,7 +256,7 @@ public class AdminController {
         model.addAttribute("genre", genres);
         model.addAttribute("user", users);
         model.addAttribute("order", orders);
-        return "/admin";
+        return "admin";
 	}
 	
 	@RequestMapping(value= "/editAlbum", method= RequestMethod.GET)
@@ -285,7 +285,7 @@ public class AdminController {
         model.addAttribute("genre", genres);
         model.addAttribute("user", users);
         model.addAttribute("order", orders);
-        return "/admin";
+        return "admin";
 	}
 	
 	@RequestMapping(value= "/addAlbum", method= RequestMethod.GET)
@@ -315,7 +315,7 @@ public class AdminController {
         model.addAttribute("genre", genres);
         model.addAttribute("user", users);
         model.addAttribute("order", orders);
-        return "/admin";
+        return "admin";
 	}
 	
 	@RequestMapping(value= "/deleteAlbum", method= RequestMethod.GET)
@@ -344,7 +344,7 @@ public class AdminController {
         model.addAttribute("genre", genres);
         model.addAttribute("user", users);
         model.addAttribute("order", orders);
-        return "/admin";
+        return "admin";
 	}
 	@RequestMapping(value= "/editOrderStatus", method= RequestMethod.GET)
 	public String editStatus(@RequestParam("editOrderStatus") Integer editOrderStatus, @RequestParam("newStatus") String newStatus, Model model) {
@@ -370,7 +370,7 @@ public class AdminController {
         model.addAttribute("genre", genres);
         model.addAttribute("user", users);
         model.addAttribute("order", orders);
-		return "/admin";
+		return "admin";
 	}
 	
 	public boolean hasSongs(Album a)

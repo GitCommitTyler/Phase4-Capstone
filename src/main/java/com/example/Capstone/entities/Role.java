@@ -2,8 +2,10 @@ package com.example.Capstone.entities;
 
 import javax.persistence.*;
 
-//import com.example.Capstone.entities.User;
+import lombok.AllArgsConstructor;
 
+//import com.example.Capstone.entities.User;
+@AllArgsConstructor
 @Entity
 @Table(name = "roles")
 public class Role {
@@ -31,5 +33,4 @@ public class Role {
 	public void setRole(String role) {
 		this.role = role;
 	}
-    
 }
