@@ -3,8 +3,10 @@ package com.example.Capstone.entities;
 import javax.persistence.*;
 
 import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
 
 //import com.example.Capstone.entities.User;
+@NoArgsConstructor
 @AllArgsConstructor
 @Entity
 @Table(name = "roles")
