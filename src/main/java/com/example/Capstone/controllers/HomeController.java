@@ -66,24 +66,25 @@ public class HomeController {
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		User user = userService.findUserByUserName(auth.getName());
 		System.out.println("words"+user.getUserName() + user.getPassword());
-		if(user.getUserName().equals("admin") && user.getPassword().equals("$2a$10$YMUUQKKVXjGxa4fAz0GQK.bbO/XAV6EROTAKFgNaAzmZ27M5D1A7W"))
+		
+		if(user.getUserName().equals("admin"))
 		{
 			Iterable<Music> Musics = musicService.GetAllMusic();
+			Iterable<Album> albums = albumService.getAlbums();
 			Iterable<Genre> genres = genreService.GetAllGenre();
 			Iterable<User> users = userService.findAllUsers();
-
-			Iterable<Album> albums = albumService.getAlbums();
-
 			Iterable<Orders> orders = orderService.findAllOrders();
-
 			
-			model.addAttribute("album", albums);
+			
+			
 	        model.addAttribute("music", Musics);
+	        model.addAttribute("album", albums);
 	        model.addAttribute("genre", genres);
 	        model.addAttribute("user", users);
 	        model.addAttribute("order", orders);
-			return "/user/admin";
+			return "admin";
 		}
+		
 		Iterable<Album> albums = albumService.getAlbums();
 		List<Album> newAlbums = (List<Album>)albumService.getNewAlbums(getDateThreshhold());
 		Iterable<Album> albumsByArtist = albumService.getAlbumByArtistDistinct();

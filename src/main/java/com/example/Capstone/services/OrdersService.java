@@ -79,12 +79,16 @@ public class OrdersService {
 			albumStr+=album.getName();
 			albumStr+=", ";
 		}
-		albumStr=albumStr.substring(0,albumStr.length()-1);
+		if(albums.size()>1) {
+			albumStr=albumStr.substring(0,albumStr.length()-1);
+		}
 		for(Music track:tracks) {
 			trackStr+=track.getName();
 			trackStr+=",";
 		}
-		trackStr=trackStr.substring(0,trackStr.length()-1);
+		if(tracks.size()>1) {
+			trackStr=trackStr.substring(0,trackStr.length()-1);	
+		}
 		Float newTotal= Float.parseFloat(total);
 		Date date = new Date();
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
